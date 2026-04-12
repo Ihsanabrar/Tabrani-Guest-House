@@ -1,0 +1,1447 @@
+/* ========== RESERVASI & PILIH KAMAR STYLES ========== */
+/* Mengikuti desain utama STCH (hitam, emas, Montserrat, Cormorant) */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background: #F9F9F9;
+    color: #333;
+    line-height: 1.6;
+    padding: 40px 20px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+}
+
+/* ========== LAYOUT DUA KOLOM ========== */
+.reservation-wrapper,
+.two-columns {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.form-section,
+.rooms-content {
+    flex: 1.2;
+    padding: 40px;
+    background: white;
+}
+
+.info-section,
+.sidebar {
+    flex: 0.8;
+    background: #1A1A1A;
+    color: white;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Sidebar khusus pilih kamar (sticky) */
+.sidebar {
+    position: sticky;
+    top: 20px;
+    height: fit-content;
+    border-radius: 20px;
+}
+
+/* ========== TYPOGRAPHY ========== */
+h1, h2, h3, .room-card h3, .guest-summary h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+}
+
+h1 {
+    font-size: 2.2rem;
+    margin-bottom: 10px;
+    color: #1A1A1A;
+}
+
+.form-section h1 {
+    border-left: 4px solid #C5A059;
+    padding-left: 15px;
+}
+
+.info-section h2 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: #C5A059;
+}
+
+.info-section p {
+    margin-bottom: 15px;
+    font-size: 0.95rem;
+    opacity: 0.8;
+}
+
+/* ========== FORM ELEMENTS ========== */
+label {
+    display: block;
+    margin: 15px 0 5px;
+    font-weight: 500;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #555;
+}
+
+input, select {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #DDD;
+    border-radius: 8px;
+    font-family: 'Montserrat', sans-serif;
+    transition: all 0.3s;
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: #C5A059;
+    box-shadow: 0 0 0 2px rgba(197, 160, 89, 0.2);
+}
+
+button, .btn {
+    background: #1A1A1A;
+    color: white;
+    border: none;
+    padding: 14px 25px;
+    width: 100%;
+    border-radius: 40px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 20px;
+    font-size: 0.9rem;
+    text-align: center;
+    display: inline-block;
+    text-decoration: none;
+}
+
+button:hover, .btn:hover {
+    background: #C5A059;
+    color: #1A1A1A;
+}
+
+.btn-back {
+    display: inline-block;
+    margin-top: 15px;
+    color: #C5A059;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.btn-back i {
+    margin-right: 5px;
+}
+
+/* ========== GUEST SUMMARY (SIDEBAR) ========== */
+.guest-summary {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 20px;
+    border-radius: 16px;
+    margin-bottom: 25px;
+    border-left: 4px solid #C5A059;
+}
+
+.guest-summary h3 {
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+}
+
+.guest-summary p {
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+.guest-summary i {
+    width: 25px;
+    color: #C5A059;
+}
+
+.date-box {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 15px;
+    border-radius: 12px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.date-box span {
+    font-weight: bold;
+    color: #C5A059;
+}
+
+/* ========== ROOM LIST (GRID) ========== */
+.room-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 25px;
+    margin-top: 10px;
+}
+
+.room-card {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: 0.3s;
+    border: 1px solid #eee;
+}
+
+.room-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    border-color: #C5A059;
+}
+
+.room-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.room-info {
+    padding: 20px;
+}
+
+.room-info h3 {
+    font-size: 1.4rem;
+    margin-bottom: 8px;
+}
+
+.room-desc {
+    font-size: 0.85rem;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.capacity {
+    font-size: 0.8rem;
+    margin-bottom: 10px;
+}
+
+.price {
+    color: #C5A059;
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin: 10px 0;
+}
+
+.total-price {
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+}
+
+.radio-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.radio-label input {
+    width: 18px;
+    height: 18px;
+    accent-color: #C5A059;
+    margin: 0;
+}
+
+/* ========== FEATURE LIST ========== */
+.feature-list {
+    list-style: none;
+    margin-top: 20px;
+}
+
+.feature-list li {
+    margin-bottom: 12px;
+}
+
+.feature-list i {
+    margin-right: 10px;
+    color: #C5A059;
+}
+
+/* ========== ERROR MESSAGE ========== */
+.error {
+    background: #ffe0e0;
+    padding: 20px;
+    border-radius: 12px;
+    color: #c00;
+    text-align: center;
+    margin: 20px;
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 900px) {
+    .reservation-wrapper,
+    .two-columns {
+        flex-direction: column;
+    }
+    .sidebar {
+        position: static;
+        margin-top: 20px;
+    }
+    .form-section, .rooms-content,
+    .info-section, .sidebar {
+        padding: 30px;
+    }
+}
+
+/* ========== ENHANCEMENTS FOR ROOM SELECTION PAGE ========== */
+body {
+    background: linear-gradient(135deg, #F9F9F9 0%, #EFEFEF 100%);
+    position: relative;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.03"><path fill="none" d="M10,10 L90,10 M10,20 L90,20 M10,30 L90,30 M10,40 L90,40 M10,50 L90,50 M10,60 L90,60 M10,70 L90,70 M10,80 L90,80 M10,90 L90,90" stroke="%231A1A1A" stroke-width="0.5"/></svg>');
+    background-repeat: repeat;
+    pointer-events: none;
+}
+
+.container {
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(0px);
+    box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+    border-radius: 28px;
+}
+
+/* Page header lebih menarik */
+.page-header {
+    text-align: center;
+    padding: 30px 20px 10px;
+    position: relative;
+}
+
+.page-header h1 {
+    font-size: 2.6rem;
+    background: linear-gradient(135deg, #1A1A1A, #C5A059);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+.page-header h1 i {
+    background: none;
+    -webkit-background-clip: unset;
+    background-clip: unset;
+    color: #C5A059;
+    margin-right: 10px;
+}
+
+.page-header p {
+    color: #666;
+    font-size: 1rem;
+    border-bottom: 2px solid #C5A059;
+    display: inline-block;
+    padding-bottom: 8px;
+}
+
+/* Sidebar lebih premium */
+.sidebar {
+    background: linear-gradient(145deg, #1A1A1A 0%, #2A2A2A 100%);
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 20px 35px -10px rgba(0,0,0,0.3);
+}
+
+.guest-summary {
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(2px);
+    border-left: 3px solid #C5A059;
+}
+
+.guest-summary h3 i {
+    color: #C5A059;
+    margin-right: 8px;
+}
+
+.date-box {
+    background: rgba(0,0,0,0.3);
+    border: 1px solid rgba(197,160,89,0.3);
+}
+
+.sidebar-footer {
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    font-size: 0.85rem;
+    text-align: center;
+}
+
+.sidebar-footer i {
+    color: #C5A059;
+    margin-right: 8px;
+    width: 25px;
+}
+
+.sidebar-footer p {
+    margin-bottom: 10px;
+}
+
+/* Kartu kamar premium */
+.room-card {
+    position: relative;
+    background: white;
+    border-radius: 24px;
+    transition: all 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    border: none;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    overflow: hidden;
+}
+
+.room-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 25px 40px -12px rgba(0,0,0,0.2);
+}
+
+.room-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.room-card:hover img {
+    transform: scale(1.02);
+}
+
+/* Badge fasilitas */
+.room-badge {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background: rgba(0,0,0,0.7);
+    backdrop-filter: blur(5px);
+    color: #C5A059;
+    padding: 5px 14px;
+    border-radius: 30px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    z-index: 2;
+    border: 1px solid rgba(197,160,89,0.5);
+    font-family: 'Montserrat', sans-serif;
+}
+
+.room-badge i {
+    margin-right: 5px;
+    font-size: 0.7rem;
+}
+
+/* Info harga */
+.price {
+    font-size: 1.4rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #C5A059, #A8823A);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    display: inline-block;
+}
+
+.total-price {
+    font-size: 0.9rem;
+    color: #555;
+    border-top: 1px dashed #e0e0e0;
+    padding-top: 10px;
+    margin-top: 10px;
+}
+
+.radio-label {
+    background: #F8F8F8;
+    border-radius: 40px;
+    padding: 10px 15px;
+    transition: 0.2s;
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.radio-label:hover {
+    background: rgba(197,160,89,0.1);
+}
+
+.radio-label input {
+    width: 18px;
+    height: 18px;
+    accent-color: #C5A059;
+    margin: 0;
+}
+
+.radio-label span {
+    flex: 1;
+    font-weight: 500;
+}
+
+/* Tombol lanjut */
+button[type="submit"] {
+    background: linear-gradient(135deg, #1A1A1A, #2A2A2A);
+    border: 1px solid #C5A059;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-top: 35px;
+    padding: 16px;
+    transition: 0.3s;
+    font-size: 1rem;
+}
+
+button[type="submit"]:hover {
+    background: #C5A059;
+    color: #1A1A1A;
+    border-color: #1A1A1A;
+}
+
+/* Responsif */
+@media (max-width: 768px) {
+    .room-card img {
+        height: 180px;
+    }
+    .page-header h1 {
+        font-size: 1.8rem;
+    }
+    .sidebar-footer {
+        font-size: 0.75rem;
+    }
+}
+
+/* ========== KONFIRMASI BOOKING ========== */
+.confirmation-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+.confirmation-card {
+    background: white;
+    border-radius: 32px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px -12px rgba(0,0,0,0.15);
+    text-align: center;
+    position: relative;
+}
+
+.confirmation-header {
+    background: linear-gradient(135deg, #1A1A1A 0%, #2C2C2C 100%);
+    padding: 40px 20px;
+    color: white;
+    position: relative;
+}
+
+.confirmation-header::before {
+    content: '✨';
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 2rem;
+    opacity: 0.3;
+}
+
+.confirmation-header::after {
+    content: '✨';
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    font-size: 2rem;
+    opacity: 0.3;
+}
+
+.success-icon {
+    width: 80px;
+    height: 80px;
+    background: #C5A059;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    box-shadow: 0 0 0 8px rgba(197,160,89,0.2);
+}
+
+.success-icon i {
+    font-size: 40px;
+    color: #1A1A1A;
+}
+
+.confirmation-header h1 {
+    color: white;
+    font-size: 1.8rem;
+    margin: 15px 0 5px;
+}
+
+.confirmation-header p {
+    color: rgba(255,255,255,0.8);
+    font-size: 0.9rem;
+}
+
+.booking-detail-card {
+    padding: 30px;
+}
+
+.booking-detail-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: #1A1A1A;
+    position: relative;
+    display: inline-block;
+}
+
+.booking-detail-card h3::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 2px;
+    background: #C5A059;
+}
+
+.detail-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    text-align: left;
+    margin: 25px 0;
+    background: #F9F9F9;
+    padding: 20px;
+    border-radius: 24px;
+}
+
+.detail-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.detail-item i {
+    width: 35px;
+    height: 35px;
+    background: #1A1A1A;
+    color: #C5A059;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+}
+
+.detail-item .detail-label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #888;
+}
+
+.detail-item .detail-value {
+    font-weight: 600;
+    color: #1A1A1A;
+}
+
+.total-box {
+    background: linear-gradient(135deg, #C5A059, #A8823A);
+    color: #1A1A1A;
+    padding: 15px;
+    border-radius: 20px;
+    margin: 20px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+}
+
+.total-box span:first-child {
+    font-size: 1rem;
+}
+
+.total-box span:last-child {
+    font-size: 1.6rem;
+    font-family: 'Cormorant Garamond', serif;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 10px;
+    flex-wrap: wrap;
+}
+
+.btn-wa {
+    background: #25D366;
+    color: white;
+    border: none;
+    padding: 12px 28px;
+    border-radius: 40px;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: 0.2s;
+}
+
+.btn-wa:hover {
+    background: #128C7E;
+    transform: scale(1.02);
+}
+
+.btn-cancel {
+    background: #dc3545;
+    color: white;
+    border: none;
+    padding: 12px 28px;
+    border-radius: 40px;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn-cancel:hover {
+    background: #c82333;
+}
+
+.btn-home {
+    background: transparent;
+    border: 1px solid #C5A059;
+    color: #C5A059;
+    padding: 10px 25px;
+    border-radius: 40px;
+    font-weight: 500;
+    transition: 0.2s;
+    display: inline-block;
+    margin-top: 20px;
+}
+
+.btn-home:hover {
+    background: #C5A059;
+    color: #1A1A1A;
+}
+
+@media (max-width: 600px) {
+    .detail-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    .action-buttons {
+        flex-direction: column;
+    }
+    .confirmation-header h1 {
+        font-size: 1.4rem;
+    }
+}
+
+/* ========== KONFIRMASI BOOKING - BACKGROUND GAMBAR ========== */
+.confirmation-page {
+    background-image: url('https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1600');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.confirmation-page::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(2px);
+}
+
+.confirmation-container {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    width: 100%;
+}
+
+.confirmation-card {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 32px;
+    overflow: hidden;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.confirmation-header {
+    background: linear-gradient(135deg, rgba(26, 26, 26, 0.9) 0%, rgba(44, 44, 44, 0.9) 100%);
+    padding: 40px 20px;
+    text-align: center;
+    backdrop-filter: blur(5px);
+}
+
+.success-icon {
+    width: 80px;
+    height: 80px;
+    background: #C5A059;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    box-shadow: 0 0 0 8px rgba(197, 160, 89, 0.2);
+}
+
+.success-icon i {
+    font-size: 40px;
+    color: #1A1A1A;
+}
+
+.confirmation-header h1 {
+    color: white;
+    font-size: 1.8rem;
+    margin: 15px 0 5px;
+    font-family: 'Cormorant Garamond', serif;
+}
+
+.confirmation-header p {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.9rem;
+}
+
+.booking-detail-card {
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.98);
+}
+
+.detail-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin: 25px 0;
+    background: #F9F9F9;
+    padding: 20px;
+    border-radius: 24px;
+}
+
+.detail-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.detail-item i {
+    width: 40px;
+    height: 40px;
+    background: #1A1A1A;
+    color: #C5A059;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+}
+
+.detail-label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #888;
+}
+
+.detail-value {
+    font-weight: 600;
+    color: #1A1A1A;
+}
+
+.total-box {
+    background: linear-gradient(135deg, #C5A059, #A8823A);
+    padding: 15px 20px;
+    border-radius: 20px;
+    margin: 20px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+    color: #1A1A1A;
+}
+
+.total-box span:first-child {
+    font-size: 1rem;
+}
+
+.total-box span:last-child {
+    font-size: 1.6rem;
+    font-family: 'Cormorant Garamond', serif;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.btn-wa {
+    background: #25D366;
+    color: white;
+    border: none;
+    padding: 12px 28px;
+    border-radius: 40px;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: 0.2s;
+    text-decoration: none;
+}
+
+.btn-wa:hover {
+    background: #128C7E;
+    transform: scale(1.02);
+}
+
+.btn-cancel {
+    background: #dc3545;
+    color: white;
+    border: none;
+    padding: 12px 28px;
+    border-radius: 40px;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+}
+
+.btn-cancel:hover {
+    background: #c82333;
+}
+
+.btn-home {
+    background: transparent;
+    border: 1px solid #C5A059;
+    color: #C5A059;
+    padding: 10px 25px;
+    border-radius: 40px;
+    font-weight: 500;
+    transition: 0.2s;
+    display: inline-block;
+    margin-top: 20px;
+    text-decoration: none;
+}
+
+.btn-home:hover {
+    background: #C5A059;
+    color: #1A1A1A;
+}
+
+@media (max-width: 600px) {
+    .detail-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    .action-buttons {
+        flex-direction: column;
+    }
+    .confirmation-header h1 {
+        font-size: 1.4rem;
+    }
+}
+
+/* ========== ADMIN PANEL (DASHBOARD) ========== */
+.admin-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+}
+.admin-header {
+    background: white;
+    border-radius: 24px;
+    padding: 20px 30px;
+    margin-bottom: 30px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.admin-header h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
+    margin: 0;
+}
+.admin-header h1 i {
+    color: #C5A059;
+    margin-right: 10px;
+}
+.admin-stats {
+    display: flex;
+    gap: 15px;
+}
+.admin-stat-card {
+    background: #F9F9F9;
+    border-radius: 16px;
+    padding: 10px 20px;
+    text-align: center;
+    border-left: 3px solid #C5A059;
+}
+.admin-stat-card .number {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #C5A059;
+}
+.admin-stat-card .label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    color: #666;
+}
+.admin-table-wrapper {
+    background: white;
+    border-radius: 24px;
+    padding: 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    overflow-x: auto;
+}
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+}
+.admin-table th {
+    background: #1A1A1A;
+    color: white;
+    padding: 12px 15px;
+    text-align: left;
+    font-weight: 600;
+}
+.admin-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #eee;
+    vertical-align: middle;
+}
+.admin-table tr:hover {
+    background: #f9f9f9;
+}
+.admin-status-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 30px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+.admin-status-pending {
+    background: #ffc107;
+    color: #1A1A1A;
+}
+.admin-status-confirmed {
+    background: #28a745;
+    color: white;
+}
+.admin-btn {
+    padding: 6px 12px;
+    border-radius: 30px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    transition: 0.2s;
+}
+.admin-btn-delete {
+    background: #dc3545;
+    color: white;
+}
+.admin-btn-delete:hover {
+    background: #c82333;
+}
+.admin-btn-confirm {
+    background: #28a745;
+    color: white;
+}
+.admin-btn-confirm:hover {
+    background: #218838;
+}
+.admin-btn-back {
+    background: #6c757d;
+    color: white;
+}
+.admin-btn-back:hover {
+    background: #5a6268;
+}
+.admin-logout-btn {
+    background: #1A1A1A;
+    color: #C5A059;
+    border: 1px solid #C5A059;
+    padding: 8px 20px;
+    border-radius: 40px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: 0.2s;
+}
+.admin-logout-btn:hover {
+    background: #C5A059;
+    color: #1A1A1A;
+}
+@media (max-width: 768px) {
+    .admin-header {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+    .admin-stats {
+        justify-content: center;
+    }
+    .admin-table th, .admin-table td {
+        padding: 8px 10px;
+    }
+}
+
+/* ========== ADMIN LOGIN MODERN - VERSI RAPI & TANPA GARIS ========== */
+.admin-login-modern-body {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+}
+
+.admin-login-modern {
+    width: 100%;
+    max-width: 1200px;
+}
+
+.admin-login-modern-container {
+    display: flex;
+    flex-wrap: wrap;
+    background: #ffffff;
+    border-radius: 32px;
+    overflow: hidden;
+    box-shadow: 0 20px 35px -8px rgba(0, 0, 0, 0.2);
+}
+
+/* LEFT SIDE - FORM */
+.admin-login-modern-left {
+    flex: 1;
+    padding: 48px 40px;
+    background: white;
+}
+
+.admin-login-modern-header h1 {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #1e293b;
+    margin-bottom: 8px;
+}
+.admin-login-modern-header h1 i {
+    color: #667eea;
+    margin-right: 8px;
+}
+.admin-login-modern-header h2 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 16px 0 8px;
+}
+.admin-login-modern-header p {
+    color: #475569;
+    font-size: 0.9rem;
+    margin-bottom: 32px;
+}
+
+.admin-login-modern-error {
+    background: #fef2f2;
+    padding: 12px 16px;
+    border-radius: 12px;
+    margin-bottom: 24px;
+    color: #b91c1c;
+    font-size: 0.85rem;
+}
+
+.admin-login-modern-input-group {
+    margin-bottom: 24px;
+}
+.admin-login-modern-input-group label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #1e293b;
+    margin-bottom: 8px;
+}
+.admin-login-modern-input-group label i {
+    color: #667eea;
+    width: 24px;
+}
+.admin-login-modern-input-group input {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1px solid #cbd5e1;
+    border-radius: 16px;
+    font-size: 0.95rem;
+    font-family: 'Inter', sans-serif;
+    background: #ffffff;
+    transition: 0.2s;
+    box-sizing: border-box;
+}
+.admin-login-modern-input-group input:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+/* PASSWORD WRAPPER + TOGGLE - PALING RAPI */
+.admin-login-modern-password-wrapper {
+    position: relative;
+    width: 100%;
+}
+.admin-login-modern-password-wrapper input {
+    width: 100%;
+    padding-right: 48px; /* cukup ruang untuk ikon */
+}
+.admin-login-modern-toggle {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    color: #94a3b8;
+    cursor: pointer;
+    font-size: 1.2rem;
+    padding: 0;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: 0.2s;
+}
+.admin-login-modern-toggle:hover {
+    color: #667eea;
+    background: #f1f5f9;
+}
+
+.admin-login-modern-btn {
+    width: 100%;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    border: none;
+    padding: 14px;
+    border-radius: 40px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.2s;
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+.admin-login-modern-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px -4px rgba(102, 126, 234, 0.4);
+}
+
+.admin-login-modern-footer {
+    text-align: center;
+    margin-top: 32px;
+    font-size: 0.8rem;
+    color: #64748b;
+}
+.admin-login-modern-footer i {
+    color: #667eea;
+    margin-right: 6px;
+}
+
+/* RIGHT SIDE - INFO CARD */
+.admin-login-modern-right {
+    flex: 1;
+    background: #f8fafc;
+    padding: 48px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.admin-login-modern-card {
+    background: white;
+    border-radius: 28px;
+    padding: 32px;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    width: 100%;
+    max-width: 320px;
+}
+.admin-login-modern-icon {
+    width: 70px;
+    height: 70px;
+    background: #eef2ff;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+}
+.admin-login-modern-icon i {
+    font-size: 32px;
+    color: #667eea;
+}
+.admin-login-modern-card h3 {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: #0f172a;
+}
+.admin-login-modern-card p {
+    color: #475569;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    margin-bottom: 24px;
+}
+.admin-login-modern-features {
+    text-align: left;
+    margin: 20px 0;
+    background: #f8fafc;
+    padding: 16px;
+    border-radius: 20px;
+}
+.admin-login-modern-features div {
+    margin-bottom: 12px;
+    font-size: 0.85rem;
+    color: #1e293b;
+}
+.admin-login-modern-features i {
+    width: 28px;
+    color: #667eea;
+    margin-right: 8px;
+}
+.admin-login-modern-badge {
+    background: #eef2ff;
+    padding: 10px;
+    border-radius: 40px;
+    font-size: 0.75rem;
+    color: #667eea;
+    font-weight: 500;
+}
+.admin-login-modern-badge i {
+    margin-right: 6px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+    .admin-login-modern-container {
+        flex-direction: column;
+    }
+    .admin-login-modern-left,
+    .admin-login-modern-right {
+        padding: 32px 24px;
+    }
+    .admin-login-modern-right {
+        background: white;
+    }
+}
+@media (max-width: 480px) {
+    .admin-login-modern-left {
+        padding: 24px 20px;
+    }
+    .admin-login-modern-header h2 {
+        font-size: 1.5rem;
+    }
+}
+
+/* ========== TOMBOL KEMBALI (PANAH) ========== */
+.back-arrow-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: #1A1A1A;
+    color: #C5A059;
+    padding: 10px 20px;
+    border-radius: 40px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 0.9rem;
+    text-decoration: none;
+    border: 1px solid rgba(197, 160, 89, 0.3);
+    transition: all 0.3s ease;
+    margin-bottom: 20px;
+    width: fit-content;
+}
+
+.back-arrow-btn i {
+    font-size: 1rem;
+    transition: transform 0.2s;
+}
+
+.back-arrow-btn:hover {
+    background: #C5A059;
+    color: #1A1A1A;
+    border-color: #1A1A1A;
+}
+
+.back-arrow-btn:hover i {
+    transform: translateX(-3px);
+}
+
+/* Opsi posisi tetap di pojok (jika ingin floating) */
+.back-arrow-fixed {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 100;
+    margin: 0;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* ========== PERBAIKAN POSISI TOMBOL KHUSUS HALAMAN RESERVASI ========== */
+.reservation-page .back-arrow-fixed {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    margin-bottom: 20px;
+    box-shadow: none;
+}
+
+/* Pastikan gaya default untuk fixed tetap berjalan di halaman lain */
+.back-arrow-fixed {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 100;
+    margin: 0;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}

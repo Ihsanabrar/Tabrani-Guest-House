@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Pricelist & Paket - Susiana Tabrani Convention Hall</title>
+    <meta name="description"
+        content="Lihat daftar harga dan paket eksklusif dari Tabrani Guest House dan Susiana Tabrani Convention Hall. Tersedia paket pernikahan, wisuda, iftar, dan lainnya.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- CSS Global (sudah berisi semua style dari index.html dan catalog.html) -->
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+    <!-- ========== HEADER (SAMA PERSIS DENGAN INDEX.HTML) ========== -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <a href="../../index.html">
+                    <img src="../logo-stch.png" alt="STCH"
+                        onerror="this.src='https://via.placeholder.com/150x60/1A1A1A/C5A059?text=STCH'">
+                </a>
+            </div>
+            <nav class="nav-desktop">
+                <ul>
+                    <li><a href="../../index.html" class="nav-link">Beranda</a></li>
+                    <li><a href="catalog.html" class="nav-link active">Pricelist</a></li>
+                    <li><a href="../../index.html#contact" class="nav-link">Kontak</a></li>
+                </ul>
+            </nav>
+            <div class="header-right">
+                <!-- Perbaikan: gunakan class "btn btn-primary" seperti di index.html -->
+                <a href="reservasi/reservasi.php" class="btn btn-primary">Booking Now</a>
+                <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ========== MOBILE NAV (SAMA PERSIS DENGAN INDEX.HTML) ========== -->
+    <div class="mobile-nav" id="mobileNav">
+        <div class="mobile-nav-header">
+            <div class="logo">
+                <img src="../logo-stch.png" alt="STCH"
+                    onerror="this.src='https://via.placeholder.com/120x40/1A1A1A/C5A059?text=STCH'">
+            </div>
+            <button class="mobile-nav-close" id="mobileNavClose"><i class="fas fa-times"></i></button>
+        </div>
+        <ul class="mobile-nav-links">
+            <li><a href="../../index.html" class="mobile-nav-link">Beranda</a></li>
+            <li><a href="catalog.html" class="mobile-nav-link active">Pricelist</a></li>
+            <li><a href="../../index.html#contact" class="mobile-nav-link">Kontak</a></li>
+            <li><a href="reservasi/reservasi.php" class="btn btn-primary" style="margin-top:1rem;">Booking Now</a></li>
+        </ul>
+    </div>
+
+    <!-- Hero Pricelist -->
+    <section class="pricelist-hero">
+        <div class="container">
+            <h1 data-aos="fade-up">Pricelist & Paket Eksklusif</h1>
+            <p data-aos="fade-up" data-aos-delay="100">Nikmati kemewahan & kenyamanan di Tabrani Guest House dan Susiana
+                Tabrani Convention Hall. Pilih paket terbaik untuk acara Anda.</p>
+        </div>
+    </section>
+
+    <!-- Main Catalog -->
+    <section class="catalog-section">
+        <div class="container">
+            <div class="catalog-layout" data-aos="fade-up">
+                <aside class="catalog-sidebar">
+                    <h3><i class="fas fa-tags"></i> Kategori</h3>
+                    <ul>
+                        <li><a href="#TGH" class="cat-link" data-target="TGH"><i class="fas fa-hotel"></i> Tabrani Guest
+                                House</a></li>
+                        <li><a href="#STCH" class="cat-link" data-target="STCH"><i class="fas fa-building"></i>
+                                Convention Hall</a></li>
+                    </ul>
+                    <div class="contact-sidebar-card">
+                        <i class="fas fa-headset" style="font-size: 2rem; color: var(--gold);"></i>
+                        <h4>Butuh Konsultasi?</h4>
+                        <p>Hubungi tim kami untuk penawaran terbaik</p>
+                        <a href="https://wa.me/62811763566" class="btn-outline-gold"><i class="fab fa-whatsapp"></i>
+                            Chat WA</a>
+                    </div>
+                </aside>
+
+                <main class="catalog-main">
+                    <!-- Guest House Section -->
+                    <section id="TGH" class="product-section">
+                        <h3><i class="fas fa-bed"></i> Tabrani Guest House</h3>
+                        <div class="product-grid">
+                            <div class="product-card" data-package="Family Room">
+                                <div class="product-image">
+                                    <img src="reservasi/GUEST_HOUSE/family_room.jpg" alt="Family Room"
+                                        onerror="this.src='https://via.placeholder.com/300x220/1A1A1A/C5A059?text=Family+Room'">
+                                </div>
+                                <div class="product-info">
+                                    <div class="product-title">Family Room</div>
+                                    <div class="product-meta"><i class="fas fa-users"></i>4 dewasa | <i
+                                            class="fas fa-expand"></i> 45m²</div>
+                                    <div class="product-price">Rp 850.000<span style="font-size:0.9rem;">/malam</span>
+                                    </div>
+                                    <div class="product-desc">2 Kamar tidur terpisah, ruang keluarga, kitchen set,
+                                        pemandangan kota.</div>
+                                    <button class="btn-small">Lihat Detail</button>
+                                </div>
+                            </div>
+                            <div class="product-card" data-package="Standard Room Double Bed">
+                                <div class="product-image">
+                                    <img src="reservasi/GUEST_HOUSE/Standard_Room_Double_Bed.jpg" alt="Double Bed"
+                                        onerror="this.src='https://via.placeholder.com/300x220/1A1A1A/C5A059?text=Double+Bed'">
+                                </div>
+                                <div class="product-info">
+                                    <div class="product-title">Standard Room Double Bed</div>
+                                    <div class="product-meta"><i class="fas fa-bed"></i> 2 orang | 25m²</div>
+                                    <div class="product-price">Rp 550.000<span style="font-size:0.9rem;">/malam</span>
+                                    </div>
+                                    <div class="product-desc">Nyaman dengan AC, TV 40", bathroom modern, coffee maker.
+                                    </div>
+                                    <button class="btn-small">Lihat Detail</button>
+                                </div>
+                            </div>
+                            <div class="product-card" data-package="Standard Room Twin Bed">
+                                <div class="product-image">
+                                    <img src="reservasi/GUEST_HOUSE/Standard_Room_Twin_Bed.jpg" alt="Twin Bed"
+                                        onerror="this.src='https://via.placeholder.com/300x220/1A1A1A/C5A059?text=Twin+Bed'">
+                                </div>
+                                <div class="product-info">
+                                    <div class="product-title">Standard Room Twin Bed</div>
+                                    <div class="product-meta"><i class="fas fa-user-friends"></i> 2 orang | 25m²</div>
+                                    <div class="product-price">Rp 550.000<span style="font-size:0.9rem;">/malam</span>
+                                    </div>
+                                    <div class="product-desc">2 single bed premium, cocok untuk rekan bisnis atau
+                                        travel.</div>
+                                    <button class="btn-small">Lihat Detail</button>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </main>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FOOTER (SAMA PERSIS DENGAN INDEX.HTML) ========== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="../logo-stch.png" alt="STCH"
+                        onerror="this.src='https://via.placeholder.com/150x60/1A1A1A/C5A059?text=STCH'">
+                    <p>Gedung serbaguna mewah dengan nuansa Islami dan Melayu di jantung kota Pekanbaru.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="../../index.html#about">Tentang</a></li>
+                        <li><a href="catalog.html">Pricelist</a></li>
+                        <li><a href="../../index.html#contact">Kontak</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Layanan</h4>
+                    <ul>
+                        <li><a href="catalog.html">Pernikahan</a></li>
+                        <li><a href="catalog.html">Seminar</a></li>
+                        <li><a href="catalog.html">Wisuda</a></li>
+                        <li><a href="catalog.html">Iftar</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Susiana Tabrani Convention Hall. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- MODAL POPUP -->
+    <div class="modal-overlay" id="detailModal">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3 id="modalPackageTitle">Detail Paket</h3>
+                <button class="modal-close-btn" id="modalCloseIconBtn">&times;</button>
+            </div>
+            <div class="modal-body" id="modalBodyContent">
+                <div class="modal-desc" id="modalDescText"></div>
+                <div class="modal-detail-list" id="modalFacilities"></div>
+            </div>
+            <div class="modal-footer">
+                <a href="reservasi/reservasi.php" class="btn-book-now" id="bookNowBtn">Book Now</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 800, once: true });
+
+        // Mobile Navigation
+        const mobileBtn = document.getElementById('mobileMenuBtn');
+        const mobileNav = document.getElementById('mobileNav');
+        const mobileClose = document.getElementById('mobileNavClose');
+        if (mobileBtn) mobileBtn.onclick = () => mobileNav.classList.add('active');
+        if (mobileClose) mobileClose.onclick = () => mobileNav.classList.remove('active');
+
+        // Smooth scroll for category links
+        document.querySelectorAll('.cat-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('data-target');
+                const targetSection = document.getElementById(targetId);
+                if (targetSection) {
+                    targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Modal Logic with Rich Data
+        const modal = document.getElementById('detailModal');
+        const modalTitle = document.getElementById('modalPackageTitle');
+        const modalDesc = document.getElementById('modalDescText');
+        const modalFacilities = document.getElementById('modalFacilities');
+        const closeIcon = document.getElementById('modalCloseIconBtn');
+
+        const packageDetails = {
+            "Family Room": { desc: "🌸 Family Room seluas 45m² dengan 2 kamar tidur terpisah, ruang keluarga, dan dapur mini. Cocok untuk liburan keluarga besar.", facilities: "<p><i class='fas fa-bed'></i> 1 King Bed + 2 Single Bed</p><p><i class='fas fa-wifi'></i> WiFi Unlimited</p><p><i class='fas fa-tv'></i> Smart TV 55\" + Netflix</p><p><i class='fas fa-utensils'></i> Kitchen set & kulkas</p>" },
+            "Standard Room Double Bed": { desc: "✨ Kamar nyaman dengan double bed premium, cocok untuk pasangan atau solo traveler. Fasilitas lengkap.", facilities: "<p><i class='fas fa-bed'></i> Extra Comfort Double Bed</p><p><i class='fas fa-wind'></i> AC Panasonic</p><p><i class='fas fa-shower'></i> Shower + Water Heater</p><p><i class='fas fa-mug-hot'></i> Fasilitas Coffee/Tea</p>" },
+            "Standard Room Twin Bed": { desc: "🛏️ Dua single bed dengan kasur berkualitas tinggi. Desain modern dan pencahayaan alami.", facilities: "<p><i class='fas fa-bed'></i> 2 Single Bed (120x200)</p><p><i class='fas fa-desk'></i> Meja kerja + Lampu baca</p><p><i class='fas fa-lock'></i> Safety Deposit Box</p><p><i class='fas fa-plug'></i> Universal socket</p>" },
+            "Wedding Package": { desc: "💍 Paket pernikahan all-inclusive: dekorasi mewah, katering 5 hidangan, dokumentasi profesional, dan sound system. Tersedia konsep indoor/outdoor.", facilities: "<p><i class='fas fa-ring'></i> Dekorasi pelaminan + panggung megah</p><p><i class='fas fa-utensils'></i> Menu premium (500-1500 pax)</p><p><i class='fas fa-camera'></i> Foto & video prewedding + dokumentasi</p><p><i class='fas fa-music'></i> Live musik atau orkestra tersedia</p>" },
+            "Graduation Package": { desc: "🎓 Paket wisuda profesional dengan panggung, backdrop bertema akademik, sound system, dan dokumentasi resmi.", facilities: "<p><i class='fas fa-microphone'></i> 4 Wireless Mic + Sound JBL</p><p><i class='fas fa-chair'></i> Kursi VIP + 800 kursi tamu</p><p><i class='fas fa-bullhorn'></i> MC Profesional</p><p><i class='fas fa-video'></i> Live streaming optional</p>" },
+            "Manasik Haji & Umroh": { desc: "🕋 Paket manasik terintegrasi dengan area simulasi sa'i, lempar jumrah, dan proyektor interaktif.", facilities: "<p><i class='fas fa-mosque'></i> Area miniatur Ka'bah & Sa'i</p><p><i class='fas fa-video'></i> Layar LED 6x3 meter</p><p><i class='fas fa-hand-holding-heart'></i> Buku panduan + konsultasi</p><p><i class='fas fa-water'></i> Tempat wudhu luas</p>" },
+            "Iftar Package": { desc: "🌙 Menu berbuka spesial: kurma, kolak, nasi kebuli, ayam bakar, aneka gorengan, dan es buah. Ruangan ber-AC dengan pemisahan pria/wanita.", facilities: "<p><i class='fas fa-utensils'></i> Menu prasmanan lengkap + takjil</p><p><i class='fas fa-moon'></i> Dekorasi Ramadhan eksklusif</p><p><i class='fas fa-charging-station'></i> Area wudhu plus karpet sajadah</p><p><i class='fas fa-quran'></i> Audio murottal</p>" },
+            "Birthday Party": { desc: "🎂 Rayakan ulang tahun dengan tema favorit (putri, superhero, dll). Paket termasuk kue 2 tingkat, dekorasi balon, dan doorprize.", facilities: "<p><i class='fas fa-balloon'></i> Dekorasi balon + backdrop karakter</p><p><i class='fas fa-music'></i> Sound system + mic karaoke</p><p><i class='fas fa-gift'></i> Doorprize & goodie bag untuk tamu anak</p><p><i class='fas fa-camera'></i> Fotografer 2 jam</p>" }
+        };
+
+        function openModal(packageName) {
+            const data = packageDetails[packageName] || packageDetails["Wedding Package"];
+            modalTitle.innerText = packageName;
+            modalDesc.innerHTML = data.desc || "Paket eksklusif dengan fasilitas terbaik. Hubungi kami untuk customisasi.";
+            modalFacilities.innerHTML = data.facilities || "<p><i class='fas fa-check-circle'></i> Fasilitas premium convention hall</p><p><i class='fas fa-parking'></i> Parkir luas 500+ mobil</p><p><i class='fas fa-wifi'></i> WiFi kecepatan tinggi</p>";
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        document.querySelectorAll('.btn-small').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const card = btn.closest('.product-card');
+                const pkgName = card?.querySelector('.product-title')?.innerText.trim() || "Paket Pilihan";
+                openModal(pkgName);
+            });
+        });
+
+        closeIcon?.addEventListener('click', closeModal);
+        modal?.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && modal?.classList.contains('active')) closeModal(); });
+    </script>
+</body>
+
+</html>
