@@ -1,29 +1,33 @@
 <?php
 session_start();
 unset($_SESSION['guest_data']);
+
+$checkin  = isset($_GET['checkin']) ? htmlspecialchars($_GET['checkin']) : '';
+$checkout = isset($_GET['checkout']) ? htmlspecialchars($_GET['checkout']) : '';
+$promo    = isset($_GET['promo']) ? htmlspecialchars($_GET['promo']) : '';
 ?>
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reservasi - Tabrani Guest House</title>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- CSS Global (style.css versi terbaru di folder assets/css) -->
     <link rel="stylesheet" href="style.css">
+     <!-- Favicon -->
+     <link rel="shortcut icon" href="../../../logo-stch.png" type="image/x-icon" />
 </head>
-
 <body class="reservation-page">
     <div class="container">
         <div class="reservation-wrapper">
             <div class="form-section">
-                <!-- Tombol kembali dipindahkan ke dalam form-section, tanpa class fixed -->
+                <!-- Tombol kembali ke beranda -->
                 <a href="../../../index.html" class="back-arrow-btn">
                     <i class="fas fa-arrow-left"></i>
-                    <span>Kembali ke Reservasi</span>
+                    <span>Kembali ke Beranda</span>
                 </a>
                 <h1>Form Reservasi</h1>
                 <p>Isi data diri Anda untuk melanjutkan pemesanan kamar.</p>
@@ -49,10 +53,18 @@ unset($_SESSION['guest_data']);
                     <input type="tel" name="phone" required>
 
                     <label>Check-in</label>
-                    <input type="date" name="check_in" required min="<?= date('Y-m-d') ?>">
+                    <input type="date" name="check_in" value="<?= $checkin ?>" required min="<?= date('Y-m-d') ?>">
 
                     <label>Check-out</label>
-                    <input type="date" name="check_out" required>
+                    <input type="date" name="check_out" value="<?= $checkout ?>" required>
+
+                    <?php if ($promo): ?>
+                        <input type="hidden" name="promo_code" value="<?= $promo ?>">
+                        <div style="background: #f0f0f0; padding: 12px; border-radius: 12px; margin: 15px 0; font-size: 0.85rem;">
+                            <i class="fas fa-ticket-alt" style="color: #C5A059;"></i> 
+                            Kode promo: <strong><?= $promo ?></strong> (akan diterapkan saat pemesanan)
+                        </div>
+                    <?php endif; ?>
 
                     <button type="submit">Cek Ketersediaan</button>
                 </form>
@@ -72,5 +84,4 @@ unset($_SESSION['guest_data']);
         </div>
     </div>
 </body>
-
 </html>
