@@ -45,7 +45,6 @@
                 </ul>
             </nav>
             <div class="header-right">
-                <!-- Perbaikan: gunakan class "btn btn-primary" seperti di index.html -->
                 <a href="reservasi/reservasi.php" class="btn btn-primary">Booking Now</a>
                 <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">
                     <i class="fas fa-bars"></i>
@@ -54,7 +53,7 @@
         </div>
     </header>
 
-    <!-- ========== MOBILE NAV (SAMA PERSIS DENGAN INDEX.HTML) ========== -->
+    <!-- ========== MOBILE NAV ========== -->
     <div class="mobile-nav" id="mobileNav">
         <div class="mobile-nav-header">
             <div class="logo">
@@ -106,6 +105,7 @@
                     <section id="TGH" class="product-section">
                         <h3><i class="fas fa-bed"></i> Tabrani Guest House</h3>
                         <div class="product-grid">
+                            <!-- Family Room -->
                             <div class="product-card" data-package="Family Room">
                                 <div class="product-image">
                                     <img src="reservasi/GUEST_HOUSE/family_room.jpg" alt="Family Room"
@@ -117,11 +117,11 @@
                                             class="fas fa-expand"></i> 45m²</div>
                                     <div class="product-price">Rp 500.000<span style="font-size:0.9rem;">/malam</span>
                                     </div>
-                                    <div class="product-desc">2 Kamar tidur terpisah, ruang keluarga, kitchen set,
-                                        pemandangan kota.</div>
+                                    <div class="product-desc">Kamar luas Full AC, tempat tidur bersih, kamar mandi dalam, WiFi, handuk, sabun, serta complimentary air mineral, teh, gula, kopi. Parkir luas & CCTV. Tersedia 4 unit.</div>
                                     <button class="btn-small">Lihat Detail</button>
                                 </div>
                             </div>
+                            <!-- Standard Room Double Bed -->
                             <div class="product-card" data-package="Standard Room Double Bed">
                                 <div class="product-image">
                                     <img src="reservasi/GUEST_HOUSE/Standard_Room_Double_Bed.jpg" alt="Double Bed"
@@ -132,11 +132,11 @@
                                     <div class="product-meta"><i class="fas fa-bed"></i> 2 orang | 25m²</div>
                                     <div class="product-price">Rp 350.000<span style="font-size:0.9rem;">/malam</span>
                                     </div>
-                                    <div class="product-desc">Nyaman dengan AC, TV 40", bathroom modern, coffee maker.
-                                    </div>
+                                    <div class="product-desc">Kamar nyaman double bed premium, Full AC, kamar mandi dalam, WiFi, handuk, sabun, serta complimentary air mineral, teh, gula, kopi. Parkir luas & CCTV. Tersedia 17 unit.</div>
                                     <button class="btn-small">Lihat Detail</button>
                                 </div>
                             </div>
+                            <!-- Standard Room Twin Bed -->
                             <div class="product-card" data-package="Standard Room Twin Bed">
                                 <div class="product-image">
                                     <img src="reservasi/GUEST_HOUSE/Standard_Room_Twin_Bed.jpg" alt="Twin Bed"
@@ -147,8 +147,7 @@
                                     <div class="product-meta"><i class="fas fa-user-friends"></i> 2 orang | 25m²</div>
                                     <div class="product-price">Rp 350.000<span style="font-size:0.9rem;">/malam</span>
                                     </div>
-                                    <div class="product-desc">2 single bed premium, cocok untuk rekan bisnis atau
-                                        travel.</div>
+                                    <div class="product-desc">Kamar nyaman dengan twin bed, Full AC, kamar mandi dalam, WiFi, handuk, sabun, serta complimentary air mineral, teh, gula, kopi. Parkir luas & CCTV. Tersedia 17 unit.</div>
                                     <button class="btn-small">Lihat Detail</button>
                                 </div>
                             </div>
@@ -159,7 +158,7 @@
         </div>
     </section>
 
-    <!-- ========== FOOTER (SAMA PERSIS DENGAN INDEX.HTML) ========== -->
+    <!-- ========== FOOTER ========== -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
@@ -232,29 +231,34 @@
             });
         });
 
-        // Modal Logic with Rich Data
+        // Modal Logic with Updated Data from PDF
         const modal = document.getElementById('detailModal');
         const modalTitle = document.getElementById('modalPackageTitle');
         const modalDesc = document.getElementById('modalDescText');
         const modalFacilities = document.getElementById('modalFacilities');
         const closeIcon = document.getElementById('modalCloseIconBtn');
 
+        // Package details sesuai dokumen PDF Guest House (tanpa mengubah desain)
         const packageDetails = {
-            "Family Room": { desc: "🌸 Family Room seluas 45m² dengan 2 kamar tidur terpisah, ruang keluarga, dan dapur mini. Cocok untuk liburan keluarga besar.", facilities: "<p><i class='fas fa-bed'></i> 1 King Bed + 2 Single Bed</p><p><i class='fas fa-wifi'></i> WiFi Unlimited</p><p><i class='fas fa-tv'></i> Smart TV 55\" + Netflix</p><p><i class='fas fa-utensils'></i> Kitchen set & kulkas</p>" },
-            "Standard Room Double Bed": { desc: "✨ Kamar nyaman dengan double bed premium, cocok untuk pasangan atau solo traveler. Fasilitas lengkap.", facilities: "<p><i class='fas fa-bed'></i> Extra Comfort Double Bed</p><p><i class='fas fa-wind'></i> AC Panasonic</p><p><i class='fas fa-shower'></i> Shower + Water Heater</p><p><i class='fas fa-mug-hot'></i> Fasilitas Coffee/Tea</p>" },
-            "Standard Room Twin Bed": { desc: "🛏️ Dua single bed dengan kasur berkualitas tinggi. Desain modern dan pencahayaan alami.", facilities: "<p><i class='fas fa-bed'></i> 2 Single Bed (120x200)</p><p><i class='fas fa-desk'></i> Meja kerja + Lampu baca</p><p><i class='fas fa-lock'></i> Safety Deposit Box</p><p><i class='fas fa-plug'></i> Universal socket</p>" },
-            "Wedding Package": { desc: "💍 Paket pernikahan all-inclusive: dekorasi mewah, katering 5 hidangan, dokumentasi profesional, dan sound system. Tersedia konsep indoor/outdoor.", facilities: "<p><i class='fas fa-ring'></i> Dekorasi pelaminan + panggung megah</p><p><i class='fas fa-utensils'></i> Menu premium (500-1500 pax)</p><p><i class='fas fa-camera'></i> Foto & video prewedding + dokumentasi</p><p><i class='fas fa-music'></i> Live musik atau orkestra tersedia</p>" },
-            "Graduation Package": { desc: "🎓 Paket wisuda profesional dengan panggung, backdrop bertema akademik, sound system, dan dokumentasi resmi.", facilities: "<p><i class='fas fa-microphone'></i> 4 Wireless Mic + Sound JBL</p><p><i class='fas fa-chair'></i> Kursi VIP + 800 kursi tamu</p><p><i class='fas fa-bullhorn'></i> MC Profesional</p><p><i class='fas fa-video'></i> Live streaming optional</p>" },
-            "Manasik Haji & Umroh": { desc: "🕋 Paket manasik terintegrasi dengan area simulasi sa'i, lempar jumrah, dan proyektor interaktif.", facilities: "<p><i class='fas fa-mosque'></i> Area miniatur Ka'bah & Sa'i</p><p><i class='fas fa-video'></i> Layar LED 6x3 meter</p><p><i class='fas fa-hand-holding-heart'></i> Buku panduan + konsultasi</p><p><i class='fas fa-water'></i> Tempat wudhu luas</p>" },
-            "Iftar Package": { desc: "🌙 Menu berbuka spesial: kurma, kolak, nasi kebuli, ayam bakar, aneka gorengan, dan es buah. Ruangan ber-AC dengan pemisahan pria/wanita.", facilities: "<p><i class='fas fa-utensils'></i> Menu prasmanan lengkap + takjil</p><p><i class='fas fa-moon'></i> Dekorasi Ramadhan eksklusif</p><p><i class='fas fa-charging-station'></i> Area wudhu plus karpet sajadah</p><p><i class='fas fa-quran'></i> Audio murottal</p>" },
-            "Birthday Party": { desc: "🎂 Rayakan ulang tahun dengan tema favorit (putri, superhero, dll). Paket termasuk kue 2 tingkat, dekorasi balon, dan doorprize.", facilities: "<p><i class='fas fa-balloon'></i> Dekorasi balon + backdrop karakter</p><p><i class='fas fa-music'></i> Sound system + mic karaoke</p><p><i class='fas fa-gift'></i> Doorprize & goodie bag untuk tamu anak</p><p><i class='fas fa-camera'></i> Fotografer 2 jam</p>" }
+            "Family Room": { 
+                desc: "🌸 Family Room seluas 45m² dengan konsep 2 kamar tidur terpisah. Dirancang untuk keluarga yang menginginkan kenyamanan maksimal.", 
+                facilities: "<p><i class='fas fa-bed'></i> Kamar tidur nyaman Full AC & tempat tidur bersih</p><p><i class='fas fa-bath'></i> Kamar mandi dalam</p><p><i class='fas fa-wifi'></i> WiFi gratis</p><p><i class='fas fa-towel-cloth'></i> Handuk & sabun</p><p><i class='fas fa-mug-hot'></i> Complimentary air mineral, teh, gula, kopi</p><p><i class='fas fa-parking'></i> Area parkir luas & free parkir</p><p><i class='fas fa-shield-alt'></i> Keamanan CCTV 24 jam</p><p><i class='fas fa-chart-simple'></i> Tersedia 4 unit Family Room</p>" 
+            },
+            "Standard Room Double Bed": { 
+                desc: "✨ Kenyamanan standar premium dengan double bed pilihan. Cocok untuk pasangan atau eksekutif yang menginginkan privasi dan fasilitas lengkap.", 
+                facilities: "<p><i class='fas fa-bed'></i> Double bed premium + Full AC & tempat tidur bersih</p><p><i class='fas fa-bath'></i> Kamar mandi dalam</p><p><i class='fas fa-wifi'></i> WiFi gratis</p><p><i class='fas fa-towel-cloth'></i> Handuk & sabun</p><p><i class='fas fa-mug-hot'></i> Complimentary air mineral, teh, gula, kopi</p><p><i class='fas fa-parking'></i> Area parkir luas & free parkir</p><p><i class='fas fa-shield-alt'></i> Keamanan CCTV 24 jam</p><p><i class='fas fa-chart-simple'></i> Tersedia 17 unit Standard Room</p>" 
+            },
+            "Standard Room Twin Bed": { 
+                desc: "🛌 Dua single bed berkualitas tinggi dengan desain modern. Sangat direkomendasikan untuk rekan bisnis atau traveling bersama.", 
+                facilities: "<p><i class='fas fa-bed'></i> 2 Single bed premium + Full AC & tempat tidur bersih</p><p><i class='fas fa-bath'></i> Kamar mandi dalam</p><p><i class='fas fa-wifi'></i> WiFi gratis</p><p><i class='fas fa-towel-cloth'></i> Handuk & sabun</p><p><i class='fas fa-mug-hot'></i> Complimentary air mineral, teh, gula, kopi</p><p><i class='fas fa-parking'></i> Area parkir luas & free parkir</p><p><i class='fas fa-shield-alt'></i> Keamanan CCTV 24 jam</p><p><i class='fas fa-chart-simple'></i> Tersedia 17 unit Standard Room</p>" 
+            }
         };
 
         function openModal(packageName) {
-            const data = packageDetails[packageName] || packageDetails["Wedding Package"];
+            const data = packageDetails[packageName] || packageDetails["Standard Room Double Bed"];
             modalTitle.innerText = packageName;
-            modalDesc.innerHTML = data.desc || "Paket eksklusif dengan fasilitas terbaik. Hubungi kami untuk customisasi.";
-            modalFacilities.innerHTML = data.facilities || "<p><i class='fas fa-check-circle'></i> Fasilitas premium convention hall</p><p><i class='fas fa-parking'></i> Parkir luas 500+ mobil</p><p><i class='fas fa-wifi'></i> WiFi kecepatan tinggi</p>";
+            modalDesc.innerHTML = data.desc;
+            modalFacilities.innerHTML = data.facilities;
             modal.classList.add('active');
             document.body.style.overflow = 'hidden';
         }
@@ -264,6 +268,7 @@
             document.body.style.overflow = '';
         }
 
+        // Attach event listeners to all detail buttons
         document.querySelectorAll('.btn-small').forEach(btn => {
             btn.addEventListener('click', (e) => {
                 const card = btn.closest('.product-card');
