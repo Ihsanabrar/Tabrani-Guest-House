@@ -68,7 +68,7 @@ CREATE TABLE `rooms` (
 --
 
 INSERT INTO `rooms` (`id`, `room_number`, `room_name`, `capacity`, `price_per_night`, `description`, `image`) VALUES
-(1, '101', 'Standard Room Double Bed', 2, 0.00, 'Kamar nyaman dengan AC dan TV', NULL),
+(1, '101', 'Standard Room King Bed', 2, 0.00, 'Kamar nyaman dengan AC dan TV', NULL),
 (2, '102', 'Standard Room Twin Bed', 2, 0.00, 'Kamar luas dengan balkon', NULL),
 (3, '201', 'Family Room', 4, 0.00, 'Cocok untuk keluarga dengan 2 kamar tidur', NULL);
 

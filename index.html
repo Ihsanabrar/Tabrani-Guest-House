@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
     <title>Tabrani Guest House - Menginap Sesuai Waktu Anda</title>
     <meta name="description"
         content="Guest house mewah di Pekanbaru dengan fasilitas lengkap, pemandangan kota, dan sistem booking 24 jam. Nikmati kenyamanan modern dengan sentuhan elegan.">
@@ -61,7 +61,6 @@
             z-index: 2;
         }
 
-        /* Overlay lebih terang (hitam dengan opacity kecil) */
         .hero-slider .slide::after {
             content: '';
             position: absolute;
@@ -70,16 +69,13 @@
             width: 100%;
             height: 100%;
             background: rgba(0, 0, 0, 0.3);
-            /* lebih terang dari 0.5 */
             z-index: 1;
         }
 
-        /* Sembunyikan dot slider */
         .hero-dots {
             display: none;
         }
 
-        /* Konten hero di atas slider */
         .hero-container-new {
             position: relative;
             z-index: 15;
@@ -133,7 +129,7 @@
             }
         }
 
-        /* ========== ABOUT SLIDER (tetap berfungsi) ========== */
+        /* About slider */
         .about-slider-container {
             position: relative;
             width: 100%;
@@ -211,6 +207,72 @@
                 height: 8px;
             }
         }
+
+        /* ========== PENYESUAIAN KHUSUS UNTUK LAYAR KECIL (iPhone 13) ========== */
+        @media (max-width: 480px) {
+            .hero-text h1 {
+                font-size: 1.9rem;
+            }
+            .hero-text h1 .hero-highlight {
+                font-size: 1.6rem;
+            }
+            .hero-explore-btn {
+                padding: 8px 20px;
+                font-size: 0.8rem;
+            }
+            .hero-booking-card {
+                padding: 1rem;
+            }
+            .booking-card-inner {
+                padding: 1rem;
+            }
+            .booking-card-inner h3 {
+                font-size: 1.4rem;
+            }
+            .facility-card {
+                padding: 1rem;
+            }
+            .facility-icon {
+                width: 70px;
+                height: 70px;
+                font-size: 2rem;
+            }
+            .section-header h2 {
+                font-size: 2rem;
+            }
+            .about-content h2 {
+                font-size: 1.8rem;
+            }
+            .about-stats-new {
+                gap: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .stat-new .stat-number {
+                font-size: 1.4rem;
+            }
+            .pricing-header h3 {
+                font-size: 1.3rem;
+            }
+            .pricing-body {
+                padding: 1rem;
+            }
+            .testimonial-card {
+                padding: 1.5rem;
+            }
+            .testimonial-card p {
+                font-size: 1rem;
+            }
+            .contact-map {
+                min-height: 250px;
+            }
+            .footer-logo img {
+                height: 40px;
+            }
+            .container {
+                padding: 0 15px;
+            }
+        }
     </style>
 </head>
 
@@ -241,7 +303,7 @@
         </div>
     </header>
 
-    <!-- ========== MOBILE NAV ========== -->
+    <!-- Mobile Nav -->
     <div class="mobile-nav" id="mobileNav">
         <div class="mobile-nav-header">
             <div class="logo">
@@ -259,9 +321,8 @@
         </ul>
     </div>
 
-    <!-- ========== HERO SECTION dengan SLIDER OTOMATIS (tanpa dot) ========== -->
+    <!-- HERO SECTION -->
     <section class="hero" id="home">
-        <!-- Hero Slider (Background) -->
         <div class="hero-slider">
             <div class="slide active" style="background-image: url('assets/menu/reservasi/GUEST_HOUSE/TGH-41.jpg');">
             </div>
@@ -269,7 +330,6 @@
             <div class="slide" style="background-image: url('assets/menu/reservasi/GUEST_HOUSE/TGH-21.jpg');"></div>
             <div class="slide" style="background-image: url('assets/menu/reservasi/GUEST_HOUSE/TGH-29.jpg');"></div>
         </div>
-        <!-- Dots disembunyikan via CSS, tetap ada di HTML tapi tidak terlihat -->
         <div class="hero-dots">
             <span class="dot active"></span>
             <span class="dot"></span>
@@ -322,7 +382,7 @@
         </div>
     </section>
 
-    <!-- ========== ABOUT SECTION ========== -->
+    <!-- ABOUT SECTION -->
     <section class="about" id="about">
         <div class="container">
             <div class="about-grid">
@@ -363,8 +423,7 @@
         </div>
     </section>
 
-    <!-- ========== FACILITIES, PRICING, OWNER, TESTIMONIALS, CONTACT, FOOTER (SAMA SEPERTI SEBELUMNYA) ========== -->
-    <!-- Bagian ini tidak diubah, hanya disalin dari versi sebelumnya agar lengkap -->
+    <!-- FACILITIES SECTION (3 KARTU) -->
     <section class="facilities" id="facilities">
         <div class="container">
             <div class="section-header" data-aos="fade-up">
@@ -373,39 +432,25 @@
             </div>
             <div class="facilities-grid">
                 <div class="facility-card" data-aos="zoom-in">
-                    <div class="facility-icon"><i class="fas fa-users"></i></div>
-                    <h3>Kapasitas 2000 Orang</h3>
-                    <p>Gedung utama mampu menampung hingga 2000 tamu, cocok untuk event skala besar.</p>
+                    <div class="facility-icon"><i class="fas fa-plane"></i></div>
+                    <h3>10 Menit dari Bandara</h3>
+                    <p>Lokasi strategis hanya 10 menit dari Bandara Sultan Syarif Kasim II. Perjalanan Anda menjadi lebih mudah dan hemat waktu.</p>
                 </div>
                 <div class="facility-card" data-aos="zoom-in" data-aos-delay="50">
-                    <div class="facility-icon"><i class="fas fa-archway"></i></div>
-                    <h3>Konsep Mediterania</h3>
-                    <p>Arsitektur megah dengan taman indah, menciptakan latar elegan untuk foto.</p>
-                </div>
-                <div class="facility-card" data-aos="zoom-in" data-aos-delay="100">
                     <div class="facility-icon"><i class="fas fa-parking"></i></div>
                     <h3>Parkir Luas</h3>
-                    <p>Area parkir 1000 kendaraan roda empat, tamu undangan tak perlu khawatir.</p>
+                    <p>Area parkir lega dengan kapasitas 1000+ kendaraan. Tamu undangan maupun pengunjung tidak perlu khawatir mencari tempat parkir.</p>
                 </div>
-                <div class="facility-card" data-aos="zoom-in" data-aos-delay="150">
-                    <div class="facility-icon"><i class="fas fa-landmark"></i></div>
-                    <h3>Riau Abdurrab Malay Heritage</h3>
-                    <p>Rumah adat Melayu berkapasitas 200 orang untuk acara adat dan eksklusif.</p>
-                </div>
-                <div class="facility-card" data-aos="zoom-in" data-aos-delay="200">
+                <div class="facility-card" data-aos="zoom-in" data-aos-delay="100">
                     <div class="facility-icon"><i class="fas fa-mosque"></i></div>
-                    <h3>Dekat Masjid At-Tabrani</h3>
-                    <p>Masjid berkapasitas 1200 jamaah dengan arsitektur Melayu-Andalusia.</p>
-                </div>
-                <div class="facility-card" data-aos="zoom-in" data-aos-delay="250">
-                    <div class="facility-icon"><i class="fas fa-bed"></i></div>
-                    <h3>Tabrani Guest House</h3>
-                    <p>Penginapan nyaman dari standar room hingga family room di area kompleks.</p>
+                    <h3>Dekat Masjid</h3>
+                    <p>Berada di kawasan Masjid Agung At-Tabrani yang megah, memudahkan Anda untuk beribadah selama menginap atau mengadakan acara.</p>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- PRICING SECTION -->
     <section class="pricing" id="pricing">
         <div class="container">
             <div class="section-header" data-aos="fade-up"><span class="section-tag">Price List</span>
@@ -465,6 +510,7 @@
         </div>
     </section>
 
+    <!-- OWNER SECTION -->
     <section class="owner">
         <div class="container">
             <div class="owner-wrapper" data-aos="fade-up">
@@ -481,6 +527,7 @@
         </div>
     </section>
 
+    <!-- TESTIMONIALS SECTION -->
     <section class="testimonials" id="testimonials">
         <div class="container">
             <div class="section-header" data-aos="fade-up"><span class="section-tag">Testimoni</span>
@@ -514,6 +561,7 @@
         </div>
     </section>
 
+    <!-- CONTACT & MAP -->
     <section class="contact" id="contact">
         <div class="container">
             <div class="contact-grid">
@@ -543,6 +591,7 @@
         </div>
     </section>
 
+    <!-- FOOTER -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
@@ -610,7 +659,7 @@
             }
         })();
 
-        // Hero Slider (otomatis, tanpa dot interaksi karena dot disembunyikan)
+        // Hero Slider
         (function () {
             const slides = document.querySelectorAll('.hero-slider .slide');
             let current = 0;
@@ -629,7 +678,7 @@
             document.addEventListener('visibilitychange', () => document.hidden ? stop() : start());
         })();
 
-        // About Slider (tetap dengan dot)
+        // About Slider
         (function () {
             const images = ["assets/menu/reservasi/GUEST_HOUSE/TGH-24.jpg", "assets/menu/reservasi/GUEST_HOUSE/TGH-21.jpg", "assets/menu/reservasi/GUEST_HOUSE/TGH-29.jpg"];
             let idx = 0, interval;

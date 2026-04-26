@@ -29,10 +29,6 @@ $room_config = [
     3 => ["stok" => 4, "harga" => 500000]   // Family
 ];
 
-// ========== PERBAIKAN UTAMA ==========
-// 1. Menggunakan COALESCE agar tidak menghasilkan NULL
-// 2. Menambahkan pengecekan error query
-// Jika kolom 'jumlah_kamar' TIDAK ADA, gunakan COUNT(*) sebagai gantinya
 $sql = "SELECT r.*, 
        COALESCE((SELECT COUNT(*) FROM bookings b 
         WHERE b.room_id = r.id AND b.status IN ('pending','confirmed') 
@@ -64,7 +60,7 @@ function getRoomImage($room) {
 
 function getRoomBadge($roomName) {
     if (stripos($roomName, 'family') !== false) return '👨‍👩‍👧‍👦 Family Room';
-    if (stripos($roomName, 'double') !== false) return '💑 Double Bed';
+    if (stripos($roomName, 'king') !== false) return '💑 King Bed';
     if (stripos($roomName, 'twin') !== false) return '👥 Twin Bed';
     return '⭐ Standard Room';
 }
@@ -74,7 +70,7 @@ function getRoomBadge($roomName) {
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
     <title>Pilih Kamar - Tabrani Guest House</title>
     <link
         href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap"
@@ -431,13 +427,54 @@ function getRoomBadge($roomName) {
         content: none;
     }
 
-    @media (max-width: 900px) {
+    /* ========== PENYESUAIAN LAYAR KECIL (iPhone 13) ========== */
+    @media (max-width: 768px) {
+        .pk-container {
+            padding: 15px;
+        }
+        .pk-header h1 {
+            font-size: 1.8rem;
+        }
+        .pk-header p {
+            font-size: 0.85rem;
+        }
+        .pk-booking-summary {
+            padding: 15px;
+            flex-direction: column;
+            gap: 15px;
+            text-align: center;
+        }
+        .pk-date-info {
+            justify-content: center;
+            gap: 20px;
+        }
+        .pk-date-item i {
+            font-size: 1.4rem;
+        }
+        .pk-date-item .label {
+            font-size: 0.65rem;
+        }
+        .pk-date-item .value {
+            font-size: 0.85rem;
+        }
+        .pk-nights {
+            font-size: 0.85rem;
+            padding: 6px 16px;
+        }
         .pk-two-columns {
             grid-template-columns: 1fr;
+            gap: 25px;
         }
         .pk-sidebar {
             position: static;
-            margin-top: 30px;
+            margin-top: 0;
+            padding: 20px;
+        }
+        .pk-sidebar h3 {
+            font-size: 1.3rem;
+        }
+        .pk-guest-detail p {
+            font-size: 0.8rem;
         }
         .pk-room-card {
             flex-direction: column;
@@ -446,15 +483,96 @@ function getRoomBadge($roomName) {
             flex: 0 0 auto;
             height: 200px;
         }
+        .pk-room-details {
+            padding: 15px;
+        }
+        .pk-room-title {
+            font-size: 1.3rem;
+        }
+        .pk-room-desc {
+            font-size: 0.8rem;
+        }
+        .pk-room-facilities span {
+            font-size: 0.7rem;
+        }
+        .pk-price-per-night {
+            font-size: 1rem;
+        }
+        .pk-total-price {
+            font-size: 0.9rem;
+        }
         .pk-select-btn {
             margin-left: 0;
             margin-top: 10px;
             width: 100%;
-        }
-        .pk-booking-summary {
-            flex-direction: column;
-            gap: 15px;
             text-align: center;
+            padding: 8px 15px;
+        }
+        .pk-room-price {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 8px;
+        }
+        .pk-room-price > div {
+            width: 100%;
+        }
+        label[style*="font-size:0.8rem"] {
+            font-size: 0.7rem !important;
+        }
+        input[type="number"] {
+            width: 55px;
+            padding: 6px;
+        }
+        .checkbox-label {
+            margin-top: 8px;
+        }
+        .pk-submit-btn {
+            padding: 12px;
+            font-size: 0.9rem;
+        }
+        .pk-sidebar-date {
+            padding: 12px;
+            font-size: 0.85rem;
+        }
+        .pk-total-row {
+            font-size: 0.85rem;
+        }
+        .pk-grand-total {
+            font-size: 1rem;
+        }
+        .pk-back-link {
+            padding: 6px 16px;
+            font-size: 0.75rem;
+            margin-bottom: 15px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .pk-header h1 {
+            font-size: 1.5rem;
+        }
+        .pk-date-info {
+            gap: 12px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .pk-date-item {
+            gap: 8px;
+        }
+        .pk-room-facilities {
+            gap: 8px;
+        }
+        .pk-room-facilities span {
+            padding: 3px 8px;
+        }
+        .pk-sidebar {
+            padding: 15px;
+        }
+        .pk-guest-detail {
+            padding: 10px;
+        }
+        .pk-guest-detail i {
+            width: 20px;
         }
     }
     </style>
