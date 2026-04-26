@@ -580,7 +580,7 @@ function getRoomBadge($roomName) {
 
 <body>
     <div class="pk-container">
-        <a href="index.php" class="pk-back-link">
+        <a href="../../../index.html" class="pk-back-link">
             <i class="fas fa-arrow-left"></i> Kembali ke Form Reservasi
         </a>
 
@@ -614,7 +614,7 @@ function getRoomBadge($roomName) {
         <?php if (empty($available_rooms)): ?>
         <div class="error">
             <p>Maaf, tidak ada kamar tersedia untuk periode yang dipilih.</p>
-            <a href="index.php" class="pk-back-link"><i class="fas fa-arrow-left"></i> Kembali ke Form</a>
+            <a href="../../../index.html" class="pk-back-link"><i class="fas fa-arrow-left"></i> Kembali ke Form</a>
         </div>
         <?php else: ?>
         <form action="proses.php" method="POST">

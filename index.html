@@ -113,22 +113,6 @@
             border: 1px solid rgba(197, 160, 89, 0.3);
         }
 
-        @media (max-width: 768px) {
-            .hero-container-new {
-                flex-direction: column;
-                text-align: center;
-                padding: 100px 20px 60px;
-            }
-
-            .hero-text h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero-booking-card {
-                margin: 0 auto;
-            }
-        }
-
         /* About slider */
         .about-slider-container {
             position: relative;
@@ -192,6 +176,20 @@
         }
 
         @media (max-width: 768px) {
+            .hero-container-new {
+                flex-direction: column;
+                text-align: center;
+                padding: 100px 20px 60px;
+            }
+
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-booking-card {
+                margin: 0 auto;
+            }
+
             .about-slider {
                 aspect-ratio: 16 / 9;
                 min-height: 220px;
@@ -208,69 +206,208 @@
             }
         }
 
-        /* ========== PENYESUAIAN KHUSUS UNTUK LAYAR KECIL (iPhone 13) ========== */
-        @media (max-width: 480px) {
+        /* ========== PENYESUAIAN KHUSUS UNTUK LAYAR KECIL (iPhone 12, 390px ke bawah) ========== */
+        @media (max-width: 390px) {
+            /* Container */
+            .container {
+                padding: 0 16px;
+            }
+
+            /* Header */
+            .header-container {
+                padding: 5px 8px;
+            }
+            .logo img {
+                height: 48px;
+            }
+            .btn-primary {
+                padding: 6px 12px;
+                font-size: 0.7rem;
+            }
+            .header-right {
+                gap: 8px;
+            }
+            .mobile-menu-btn {
+                font-size: 1.3rem;
+            }
+
+            /* Hero */
+            .hero-container-new {
+                padding: 90px 16px 50px;
+            }
             .hero-text h1 {
-                font-size: 1.9rem;
+                font-size: 1.8rem;
             }
             .hero-text h1 .hero-highlight {
-                font-size: 1.6rem;
+                font-size: 1.5rem;
+            }
+            .hero-text p {
+                font-size: 0.85rem;
+                margin-bottom: 1.5rem;
             }
             .hero-explore-btn {
+                padding: 8px 18px;
+                font-size: 0.75rem;
+            }
+            .hero-booking-card {
+                padding: 0.8rem;
+                max-width: 100%;
+            }
+            .booking-card-inner {
+                padding: 0.8rem;
+            }
+            .booking-card-inner h3 {
+                font-size: 1.2rem;
+                margin-bottom: 1rem;
+            }
+            .input-icon input,
+            .input-icon select {
+                padding: 10px 10px 10px 38px;
+                font-size: 0.8rem;
+            }
+            .booking-submit {
+                padding: 10px;
+                font-size: 0.8rem;
+            }
+
+            /* Section umum */
+            .section-header h2 {
+                font-size: 1.8rem;
+            }
+            .section-header p {
+                font-size: 0.85rem;
+            }
+
+            /* About */
+            .about {
+                padding: 60px 0;
+            }
+            .about-content h2 {
+                font-size: 1.6rem;
+            }
+            .about-desc {
+                font-size: 0.9rem;
+            }
+            .feature-item {
+                font-size: 0.85rem;
+                gap: 8px;
+            }
+            .about-stats-new {
+                flex-wrap: wrap;
+                gap: 0.8rem;
+                justify-content: center;
+            }
+            .stat-new .stat-number {
+                font-size: 1.2rem;
+            }
+            .stat-new .stat-label {
+                font-size: 0.7rem;
+            }
+            .about-btn {
                 padding: 8px 20px;
                 font-size: 0.8rem;
             }
-            .hero-booking-card {
-                padding: 1rem;
+
+            /* Facilities */
+            .facilities {
+                padding: 60px 0;
             }
-            .booking-card-inner {
-                padding: 1rem;
-            }
-            .booking-card-inner h3 {
-                font-size: 1.4rem;
+            .facilities-grid {
+                gap: 1.2rem;
             }
             .facility-card {
                 padding: 1rem;
             }
             .facility-icon {
-                width: 70px;
-                height: 70px;
-                font-size: 2rem;
+                width: 60px;
+                height: 60px;
+                font-size: 1.6rem;
+                margin-bottom: 1rem;
             }
-            .section-header h2 {
-                font-size: 2rem;
+            .facility-card h3 {
+                font-size: 1.1rem;
             }
-            .about-content h2 {
-                font-size: 1.8rem;
+            .facility-card p {
+                font-size: 0.8rem;
             }
-            .about-stats-new {
-                gap: 1rem;
-                flex-wrap: wrap;
-                justify-content: center;
+
+            /* Pricing */
+            .pricing {
+                padding: 60px 0;
             }
-            .stat-new .stat-number {
-                font-size: 1.4rem;
+            .pricing-card {
+                margin-bottom: 1rem;
             }
             .pricing-header h3 {
-                font-size: 1.3rem;
+                font-size: 1.2rem;
             }
-            .pricing-body {
-                padding: 1rem;
+            .pricing-body ul li {
+                font-size: 0.85rem;
+                margin-bottom: 0.5rem;
             }
-            .testimonial-card {
-                padding: 1.5rem;
+            .btn-small, .pricing-footer .btn-primary {
+                padding: 8px 16px;
+                font-size: 0.75rem;
             }
-            .testimonial-card p {
+
+            /* Owner */
+            .owner {
+                padding: 60px 0;
+            }
+            .owner-wrapper {
+                gap: 1.5rem;
+            }
+            .owner-quote blockquote p {
+                font-size: 1.1rem;
+            }
+            .owner-quote cite {
                 font-size: 1rem;
             }
+
+            /* Testimonials */
+            .testimonials {
+                padding: 60px 0;
+            }
+            .testimonial-card {
+                padding: 1.2rem;
+            }
+            .testimonial-card p {
+                font-size: 0.9rem;
+            }
+
+            /* Contact */
+            .contact {
+                padding: 60px 0;
+            }
+            .contact-info h2 {
+                font-size: 1.6rem;
+            }
+            .info-details p {
+                font-size: 0.85rem;
+                word-break: break-word;
+            }
             .contact-map {
-                min-height: 250px;
+                min-height: 220px;
+            }
+
+            /* Footer */
+            .footer {
+                padding: 40px 0 20px;
             }
             .footer-logo img {
-                height: 40px;
+                height: 35px;
             }
-            .container {
-                padding: 0 15px;
+            .footer-logo p {
+                font-size: 0.8rem;
+            }
+            .footer-links h4 {
+                font-size: 0.9rem;
+            }
+            .footer-links a {
+                font-size: 0.8rem;
+            }
+            .footer-bottom p {
+                font-size: 0.7rem;
             }
         }
     </style>
@@ -398,24 +535,19 @@
                     <p class="about-desc">Tabrani Guest House & Convention Hall menghadirkan perpaduan sempurna antara
                         arsitektur Mediterania modern dan nuansa Melayu yang hangat. Dirancang untuk acara skala besar
                         maupun menginap eksklusif, setiap sudut kami menceritakan tentang kemewahan yang autentik.</p>
+                    
                     <div class="about-features">
-                        <div class="feature-item"><i class="fas fa-check-circle"></i><span>Kapasitas hingga
-                                <strong>2.000 tamu</strong></span></div>
-                        <div class="feature-item"><i class="fas fa-check-circle"></i><span>Area parkir <strong>1.000+
-                                    mobil</strong></span></div>
-                        <div class="feature-item"><i class="fas fa-check-circle"></i><span><strong>5 ruangan</strong>
-                                eksklusif & fleksibel</span></div>
-                        <div class="feature-item"><i class="fas fa-check-circle"></i><span>Layanan <strong>24
-                                    jam</strong> & VIP dedicated team</span></div>
+                        <div class="feature-item"><i class="fas fa-plane"></i><span><strong>10 Menit</strong> dari Bandara</span></div>
+                        <div class="feature-item"><i class="fas fa-parking"></i><span>Area parkir <strong>luas 1000+ mobil</strong></span></div>
+                        <div class="feature-item"><i class="fas fa-mosque"></i><span><strong>Dekat Masjid</strong> At-Tabrani</span></div>
                     </div>
+                    
                     <div class="about-stats-new">
-                        <div class="stat-new"><span class="stat-number">2000+</span><span class="stat-label">Kapasitas
-                                Tamu</span></div>
-                        <div class="stat-new"><span class="stat-number">1000+</span><span class="stat-label">Parkir
-                                Mobil</span></div>
-                        <div class="stat-new"><span class="stat-number">5+</span><span class="stat-label">Ruangan
-                                Eksklusif</span></div>
+                        <div class="stat-new"><span class="stat-number">10 Menit</span><span class="stat-label">Dari Bandara</span></div>
+                        <div class="stat-new"><span class="stat-number">1000+</span><span class="stat-label">Parkir Mobil</span></div>
+                        <div class="stat-new"><span class="stat-number">Dekat</span><span class="stat-label">Masjid At-Tabrani</span></div>
                     </div>
+                    
                     <a href="assets/menu/catalog.html" class="btn btn-primary about-btn">Explore More <i
                             class="fas fa-arrow-right"></i></a>
                 </div>
@@ -444,7 +576,7 @@
                 <div class="facility-card" data-aos="zoom-in" data-aos-delay="100">
                     <div class="facility-icon"><i class="fas fa-mosque"></i></div>
                     <h3>Dekat Masjid</h3>
-                    <p>Berada di kawasan Masjid Agung At-Tabrani yang megah, memudahkan Anda untuk beribadah selama menginap atau mengadakan acara.</p>
+                    <p>Berada di kawasan Masjid At-Tabrani yang megah, memudahkan Anda untuk beribadah selama menginap atau mengadakan acara.</p>
                 </div>
             </div>
         </div>
