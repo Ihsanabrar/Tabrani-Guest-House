@@ -24,8 +24,8 @@ if (strtotime($check_out) <= strtotime($check_in)) die("Error: Check-out harus s
 $nights = (strtotime($check_out) - strtotime($check_in)) / 86400;
 
 $room_config = [
-    1 => ["stok" => 5, "harga" => 250000],  // Double
-    2 => ["stok" => 12, "harga" => 250000], // Twin
+    1 => ["stok" => 5, "harga" => 350000],  // Double
+    2 => ["stok" => 12, "harga" => 350000], // Twin
     3 => ["stok" => 4, "harga" => 500000]   // Family
 ];
 
@@ -59,9 +59,9 @@ function getRoomImage($room) {
 }
 
 function getRoomBadge($roomName) {
-    if (stripos($roomName, 'family') !== false) return '👨‍👩‍👧‍👦 Family Room';
-    if (stripos($roomName, 'king') !== false) return '💑 King Bed';
-    if (stripos($roomName, 'twin') !== false) return '👥 Twin Bed';
+    if (stripos($roomName, 'family') !== false) return ' Family Room';
+    if (stripos($roomName, 'king') !== false) return ' King Bed';
+    if (stripos($roomName, 'twin') !== false) return ' Twin Bed';
     return '⭐ Standard Room';
 }
 ?>
@@ -75,6 +75,7 @@ function getRoomBadge($roomName) {
     <link
         href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
+    <link rel="shortcut icon" href="../../logo-stch.png" type="image/x-icon" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <style>
