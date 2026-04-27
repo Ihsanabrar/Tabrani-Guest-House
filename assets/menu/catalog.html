@@ -22,13 +22,285 @@
     <!-- AOS Animation -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
-    <!-- CSS Global (sudah berisi semua style dari index.html dan catalog.html) -->
+    <!-- CSS Global -->
     <link rel="stylesheet" href="../css/style.css">
+
+    <style>
+        /* ========== TAMBAHAN CSS UNTUK CAROUSEL GAMBAR DI MODAL ========== */
+        .modal-carousel {
+            margin-bottom: 1.5rem;
+            border-radius: 20px;
+            overflow: hidden;
+            background: #f0f0f0;
+            position: relative;
+        }
+
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 10;
+            overflow: hidden;
+            border-radius: 16px;
+        }
+
+        .carousel-slides {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.3s ease;
+            will-change: transform;
+        }
+
+        .carousel-slide {
+            flex: 0 0 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            cursor: pointer;
+        }
+
+        /* Tombol panah tanpa efek hover */
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(4px);
+            border: none;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+        }
+
+        /* Tidak ada efek hover sama sekali */
+        .carousel-btn:hover {
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            transform: translateY(-50%);
+        }
+
+        .carousel-prev {
+            left: 12px;
+        }
+
+        .carousel-next {
+            right: 12px;
+        }
+
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 0 8px;
+        }
+
+        .carousel-dot {
+            width: 8px;
+            height: 8px;
+            background: #ccc;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: 0.2s;
+            border: none;
+        }
+
+        .carousel-dot.active {
+            background: var(--gold);
+            transform: scale(1.2);
+        }
+
+        .carousel-swipe-hint {
+            text-align: center;
+            font-size: 0.7rem;
+            color: #888;
+            margin-top: 4px;
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .carousel-swipe-hint {
+                display: block;
+            }
+            .carousel-btn {
+                width: 32px;
+                height: 32px;
+                font-size: 1rem;
+            }
+            .carousel-btn:hover {
+                transform: translateY(-50%);
+            }
+        }
+
+        /* ========== PERBAIKAN MODAL POPUP (catalog.html only) ========== */
+        .modal-overlay .modal-container {
+            max-width: min(90vw, 750px);
+            width: 100%;
+            border-radius: 28px;
+            max-height: 85vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .modal-container .modal-header {
+            flex-shrink: 0;
+            padding: 1.2rem 1.8rem;
+        }
+
+        .modal-container .modal-body {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1rem 1.8rem 1.5rem;
+        }
+
+        .modal-carousel {
+            margin-bottom: 1.2rem;
+        }
+
+        .carousel-container {
+            aspect-ratio: 16 / 9;
+            border-radius: 20px;
+            background: #eaeaea;
+        }
+
+        .modal-desc {
+            font-size: 1rem;
+            line-height: 1.5;
+            margin: 0.75rem 0 1rem;
+            color: #2c2c2c;
+        }
+
+        .modal-detail-list {
+            background: #f9f5eb;
+            padding: 1.2rem 1.5rem;
+            border-radius: 20px;
+            margin-top: 0.75rem;
+            font-size: 0.95rem;
+        }
+
+        .modal-detail-list p {
+            margin-bottom: 0.6rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .modal-detail-list i {
+            width: 24px;
+            color: var(--gold);
+            font-size: 1.1rem;
+        }
+
+        .modal-footer {
+            padding: 1rem 1.8rem 1.8rem;
+            flex-shrink: 0;
+        }
+
+        .btn-book-now {
+            width: 100%;
+            text-align: center;
+            font-size: 1rem;
+            padding: 12px 20px;
+        }
+
+        @media (max-width: 640px) {
+            .modal-overlay .modal-container {
+                max-width: 92vw;
+                border-radius: 24px;
+            }
+            .modal-container .modal-header {
+                padding: 1rem 1.2rem;
+            }
+            .modal-container .modal-body {
+                padding: 0.8rem 1.2rem 1rem;
+            }
+            .modal-detail-list {
+                padding: 1rem;
+            }
+            .modal-detail-list p {
+                font-size: 0.85rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .modal-container .modal-header h3 {
+                font-size: 1.4rem;
+            }
+            .modal-desc {
+                font-size: 0.9rem;
+            }
+        }
+
+        /* ========== FULLSCREEN ZOOM GAMBAR (seperti Traveloka) ========== */
+        .fullscreen-viewer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            visibility: hidden;
+            opacity: 0;
+            transition: 0.2s ease;
+            cursor: zoom-out;
+            backdrop-filter: blur(8px);
+        }
+        .fullscreen-viewer.active {
+            visibility: visible;
+            opacity: 1;
+        }
+        .fullscreen-viewer img {
+            max-width: 90vw;
+            max-height: 90vh;
+            object-fit: contain;
+            cursor: zoom-in;
+            transition: transform 0.1s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border-radius: 16px;
+        }
+        .fullscreen-viewer.zoomed img {
+            transform: scale(1.5);
+            cursor: zoom-out;
+        }
+        .fullscreen-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 2rem;
+            color: white;
+            background: rgba(0,0,0,0.6);
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: 0.2s;
+            border: none;
+            z-index: 10001;
+        }
+        .fullscreen-close:hover {
+            background: rgba(255,255,255,0.2);
+        }
+    </style>
 </head>
 
 <body>
 
-    <!-- ========== HEADER (SAMA PERSIS DENGAN INDEX.HTML) ========== -->
+    <!-- ========== HEADER ========== -->
     <header>
         <div class="container header-container">
             <div class="logo">
@@ -46,6 +318,9 @@
             </nav>
             <div class="header-right">
                 <a href="reservasi/reservasi.php" class="btn btn-primary">Booking Now</a>
+                <a href="reservasi/admin_login.php" class="btn-admin-icon" id="adminLoginBtn" title="Login Admin">
+                    <i class="fas fa-user-circle"></i>
+                </a>
                 <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">
                     <i class="fas fa-bars"></i>
                 </button>
@@ -67,6 +342,7 @@
             <li><a href="catalog.html" class="mobile-nav-link active">Pricelist</a></li>
             <li><a href="https://ihsanabrar.github.io/STCH/" class="mobile-nav-link">STCH</a></li>
             <li><a href="reservasi/reservasi.php" class="btn btn-primary" style="margin-top:1rem;">Booking Now</a></li>
+            <li><a href="reservasi/admin_login.php" class="mobile-nav-link admin-link-mobile"><i class="fas fa-user-circle"></i> Login Admin</a></li>
         </ul>
     </div>
 
@@ -190,14 +466,24 @@
         </div>
     </footer>
 
-    <!-- MODAL POPUP -->
+    <!-- MODAL POPUP dengan Carousel Gambar -->
     <div class="modal-overlay" id="detailModal">
         <div class="modal-container">
             <div class="modal-header">
                 <h3 id="modalPackageTitle">Detail Paket</h3>
                 <button class="modal-close-btn" id="modalCloseIconBtn">&times;</button>
             </div>
-            <div class="modal-body" id="modalBodyContent">
+            <div class="modal-body">
+                <!-- CAROUSEL GAMBAR -->
+                <div class="modal-carousel" id="modalCarousel">
+                    <div class="carousel-container">
+                        <div class="carousel-slides" id="carouselSlides"></div>
+                        <button class="carousel-btn carousel-prev" id="carouselPrev"><i class="fas fa-chevron-left"></i></button>
+                        <button class="carousel-btn carousel-next" id="carouselNext"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                    <div class="carousel-dots" id="carouselDots"></div>
+                    <div class="carousel-swipe-hint"><i class="fas fa-hand-peace"></i> Geser ke kiri/kanan untuk melihat gambar</div>
+                </div>
                 <div class="modal-desc" id="modalDescText"></div>
                 <div class="modal-detail-list" id="modalFacilities"></div>
             </div>
@@ -205,6 +491,12 @@
                 <a href="reservasi/reservasi.php" class="btn-book-now" id="bookNowBtn">Book Now</a>
             </div>
         </div>
+    </div>
+
+    <!-- Fullscreen Image Viewer -->
+    <div id="fullscreenViewer" class="fullscreen-viewer">
+        <button class="fullscreen-close" id="fullscreenCloseBtn">&times;</button>
+        <img id="fullscreenImg" src="" alt="Preview">
     </div>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
@@ -230,34 +522,184 @@
             });
         });
 
-        // Modal Logic with Updated Data from PDF
+        // ========== DATA GAMBAR UNTUK SETIAP TIPE KAMAR ==========
+        const roomImages = {
+            "Family Room": [
+                "reservasi/GUEST_HOUSE/family_room.jpg",
+                "reservasi/GUEST_HOUSE/family_room2.jpg",
+                "reservasi/GUEST_HOUSE/family_room3.jpg",
+                "reservasi/GUEST_HOUSE/family_room4.jpg",
+                "reservasi/GUEST_HOUSE/family_room5.jpg",
+                "reservasi/GUEST_HOUSE/family_room6.jpg"
+            ],
+            "Standard Room King Bed": [
+                "reservasi/GUEST_HOUSE/Standard_Room_King_Bed.jpg",
+                "reservasi/GUEST_HOUSE/king_bed_2.jpg",
+            ],
+            "Standard Room Twin Bed": [
+                "reservasi/GUEST_HOUSE/Standard_Room_Twin_Bed.jpg",
+                "reservasi/GUEST_HOUSE/twin_bed_2.jpg",
+                "reservasi/GUEST_HOUSE/twin_bed_3.jpg",
+                "reservasi/GUEST_HOUSE/twin_bed_4.jpg",
+                "reservasi/GUEST_HOUSE/twin_bed_5.jpg"
+            ]
+        };
+        
+        const defaultImages = [
+            "https://via.placeholder.com/800x500/1A1A1A/C5A059?text=Gambar+1",
+            "https://via.placeholder.com/800x500/1A1A1A/C5A059?text=Gambar+2",
+            "https://via.placeholder.com/800x500/1A1A1A/C5A059?text=Gambar+3"
+        ];
+
+        // Elemen carousel
+        const carouselSlides = document.getElementById('carouselSlides');
+        const carouselDots = document.getElementById('carouselDots');
+        const prevBtn = document.getElementById('carouselPrev');
+        const nextBtn = document.getElementById('carouselNext');
+        let currentIndex = 0;
+        let currentImages = [];
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        // Fungsi update carousel
+        function updateCarousel() {
+            if (!carouselSlides) return;
+            carouselSlides.innerHTML = '';
+            currentImages.forEach((imgSrc, idx) => {
+                const slide = document.createElement('div');
+                slide.className = 'carousel-slide';
+                slide.style.backgroundImage = `url('${imgSrc}')`;
+                carouselSlides.appendChild(slide);
+            });
+            carouselDots.innerHTML = '';
+            currentImages.forEach((_, idx) => {
+                const dot = document.createElement('button');
+                dot.className = 'carousel-dot';
+                if (idx === currentIndex) dot.classList.add('active');
+                dot.addEventListener('click', () => goToSlide(idx));
+                carouselDots.appendChild(dot);
+            });
+            carouselSlides.style.transform = `translateX(-${currentIndex * 100}%)`;
+            attachCarouselClickEvent();
+        }
+
+        function goToSlide(index) {
+            if (index < 0) index = 0;
+            if (index >= currentImages.length) index = currentImages.length - 1;
+            currentIndex = index;
+            carouselSlides.style.transform = `translateX(-${currentIndex * 100}%)`;
+            document.querySelectorAll('.carousel-dot').forEach((dot, i) => {
+                if (i === currentIndex) dot.classList.add('active');
+                else dot.classList.remove('active');
+            });
+        }
+
+        function nextSlide() { if (currentImages.length) goToSlide(currentIndex + 1); }
+        function prevSlide() { if (currentImages.length) goToSlide(currentIndex - 1); }
+
+        if (prevBtn) prevBtn.addEventListener('click', prevSlide);
+        if (nextBtn) nextBtn.addEventListener('click', nextSlide);
+
+        const carouselContainer = document.querySelector('.carousel-container');
+        if (carouselContainer) {
+            carouselContainer.addEventListener('touchstart', (e) => { touchStartX = e.changedTouches[0].screenX; });
+            carouselContainer.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                if (touchEndX < touchStartX - 50) nextSlide();
+                if (touchEndX > touchStartX + 50) prevSlide();
+            });
+        }
+
+        // Fullscreen logic
+        const viewer = document.getElementById('fullscreenViewer');
+        const viewerImg = document.getElementById('fullscreenImg');
+        const closeViewer = document.getElementById('fullscreenCloseBtn');
+
+        function openFullscreen(imgSrc) {
+            viewerImg.src = imgSrc;
+            viewer.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            viewerImg.classList.remove('zoomed');
+            viewerImg.style.transform = '';
+        }
+
+        function closeFullscreen() {
+            viewer.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function attachCarouselClickEvent() {
+            const slides = document.querySelectorAll('.carousel-slide');
+            slides.forEach(slide => {
+                slide.removeEventListener('click', carouselClickHandler);
+                slide.addEventListener('click', carouselClickHandler);
+            });
+        }
+
+        function carouselClickHandler(e) {
+            const bgImage = window.getComputedStyle(this).backgroundImage;
+            const match = bgImage.match(/url\(["']?([^"']*)["']?\)/);
+            if (match && match[1]) openFullscreen(match[1]);
+        }
+
+        closeViewer.addEventListener('click', closeFullscreen);
+        viewer.addEventListener('click', (e) => { if (e.target === viewer) closeFullscreen(); });
+        viewerImg.addEventListener('click', (e) => {
+            e.stopPropagation();
+            viewerImg.classList.toggle('zoomed');
+        });
+        viewerImg.addEventListener('wheel', (e) => {
+            e.preventDefault();
+            let scale = viewerImg.classList.contains('zoomed') ? 1.5 : 1;
+            const delta = e.deltaY > 0 ? -0.1 : 0.1;
+            let newScale = scale + delta;
+            newScale = Math.min(Math.max(newScale, 1), 2.5);
+            if (newScale > 1.05) {
+                viewerImg.classList.add('zoomed');
+                viewerImg.style.transform = `scale(${newScale})`;
+            } else {
+                viewerImg.classList.remove('zoomed');
+                viewerImg.style.transform = '';
+            }
+        }, { passive: false });
+        new MutationObserver(() => {
+            if (!viewer.classList.contains('active')) return;
+            viewerImg.classList.remove('zoomed');
+            viewerImg.style.transform = '';
+        }).observe(viewerImg, { attributes: true, attributeFilter: ['src'] });
+
+        // Modal logic
         const modal = document.getElementById('detailModal');
         const modalTitle = document.getElementById('modalPackageTitle');
         const modalDesc = document.getElementById('modalDescText');
         const modalFacilities = document.getElementById('modalFacilities');
         const closeIcon = document.getElementById('modalCloseIconBtn');
 
-        // Package details sesuai dokumen PDF Guest House (tanpa mengubah desain)
         const packageDetails = {
             "Family Room": { 
-                desc: "🌸 Family Room seluas dengan konsep 2 kamar tidur terpisah. Dirancang untuk keluarga yang menginginkan kenyamanan maksimal.", 
-                facilities: "<p><i class='fas fa-bed'></i> Kamar tidur nyaman Full AC & tempat tidur bersih</p><p><i class='fas fa-bath'></i> Kamar mandi dalam</p><p><i class='fas fa-wifi'></i> WiFi gratis</p><p><i class='fas fa-towel-cloth'></i> Handuk & sabun</p><p><i class='fas fa-mug-hot'></i> Complimentary air mineral, teh, gula, kopi</p><p><i class='fas fa-parking'></i> Area parkir luas & free parkir</p><p><i class='fas fa-shield-alt'></i> Keamanan CCTV 24 jam</p><p><i class='fas fa-chart-simple'></i> Tersedia 4 unit Family Room</p>" 
+                desc: "🌸 Family Room dengan konsep 2 kamar tidur terpisah. Dirancang untuk keluarga yang menginginkan kenyamanan maksimal.", 
+                facilities: "<p><i class='fas fa-bed'></i> Kamar tidur nyaman Full AC & tempat tidur bersih</p><p><i class='fas fa-bath'></i> Kamar mandi dalam</p><p><i class='fas fa-wifi'></i> WiFi gratis</p><p><i class='fas fa-hand-sparkles'></i> Handuk & sabun</p><p><i class='fas fa-mug-hot'></i> Complimentary air mineral, teh, gula, kopi</p><p><i class='fas fa-parking'></i> Area parkir luas & free parkir</p><p><i class='fas fa-shield-alt'></i> Keamanan CCTV 24 jam</p><p><i class='fas fa-chart-simple'></i> Tersedia 4 unit Family Room</p>" 
             },
             "Standard Room King Bed": { 
                 desc: "✨ Kenyamanan standar premium dengan king bed pilihan. Cocok untuk pasangan atau eksekutif yang menginginkan privasi dan fasilitas lengkap.", 
-                facilities: "<p><i class='fas fa-bed'></i> King bed premium + Full AC & tempat tidur bersih</p><p><i class='fas fa-bath'></i> Kamar mandi dalam</p><p><i class='fas fa-wifi'></i> WiFi gratis</p><p><i class='fas fa-towel-cloth'></i> Handuk & sabun</p><p><i class='fas fa-mug-hot'></i> Complimentary air mineral, teh, gula, kopi</p><p><i class='fas fa-parking'></i> Area parkir luas & free parkir</p><p><i class='fas fa-shield-alt'></i> Keamanan CCTV 24 jam</p><p><i class='fas fa-chart-simple'></i> Tersedia 17 unit Standard Room</p>" 
+                facilities: "<p><i class='fas fa-bed'></i> King bed premium + Full AC & tempat tidur bersih</p><p><i class='fas fa-bath'></i> Kamar mandi dalam</p><p><i class='fas fa-wifi'></i> WiFi gratis</p><p><i class='fas fa-hand-sparkles'></i> Handuk & sabun</p><p><i class='fas fa-mug-hot'></i> Complimentary air mineral, teh, gula, kopi</p><p><i class='fas fa-parking'></i> Area parkir luas & free parkir</p><p><i class='fas fa-shield-alt'></i> Keamanan CCTV 24 jam</p><p><i class='fas fa-chart-simple'></i> Tersedia 17 unit Standard Room</p>" 
             },
             "Standard Room Twin Bed": { 
                 desc: "🛌 Dua single bed berkualitas tinggi dengan desain modern. Sangat direkomendasikan untuk rekan bisnis atau traveling bersama.", 
-                facilities: "<p><i class='fas fa-bed'></i> 2 Single bed premium + Full AC & tempat tidur bersih</p><p><i class='fas fa-bath'></i> Kamar mandi dalam</p><p><i class='fas fa-wifi'></i> WiFi gratis</p><p><i class='fas fa-towel-cloth'></i> Handuk & sabun</p><p><i class='fas fa-mug-hot'></i> Complimentary air mineral, teh, gula, kopi</p><p><i class='fas fa-parking'></i> Area parkir luas & free parkir</p><p><i class='fas fa-shield-alt'></i> Keamanan CCTV 24 jam</p><p><i class='fas fa-chart-simple'></i> Tersedia 17 unit Standard Room</p>" 
+                facilities: "<p><i class='fas fa-bed'></i> 2 Single bed premium + Full AC & tempat tidur bersih</p><p><i class='fas fa-bath'></i> Kamar mandi dalam</p><p><i class='fas fa-wifi'></i> WiFi gratis</p><p><i class='fas fa-hand-sparkles'></i> Handuk & sabun</p><p><i class='fas fa-mug-hot'></i> Complimentary air mineral, teh, gula, kopi</p><p><i class='fas fa-parking'></i> Area parkir luas & free parkir</p><p><i class='fas fa-shield-alt'></i> Keamanan CCTV 24 jam</p><p><i class='fas fa-chart-simple'></i> Tersedia 17 unit Standard Room</p>" 
             }
         };
 
         function openModal(packageName) {
-            const data = packageDetails[packageName] || packageDetails["Standard Room King Bed"];
+            const data = packageDetails[packageName];
             modalTitle.innerText = packageName;
             modalDesc.innerHTML = data.desc;
             modalFacilities.innerHTML = data.facilities;
+            const images = roomImages[packageName] || defaultImages;
+            currentImages = images.filter(img => img && img.trim() !== "");
+            if (currentImages.length === 0) currentImages = defaultImages;
+            currentIndex = 0;
+            updateCarousel();
             modal.classList.add('active');
             document.body.style.overflow = 'hidden';
         }
@@ -267,7 +709,6 @@
             document.body.style.overflow = '';
         }
 
-        // Attach event listeners to all detail buttons
         document.querySelectorAll('.btn-small').forEach(btn => {
             btn.addEventListener('click', (e) => {
                 const card = btn.closest('.product-card');

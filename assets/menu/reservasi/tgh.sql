@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 11, 2026 at 02:25 PM
+-- Generation Time: Apr 27, 2026 at 05:36 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -30,6 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `bookings` (
   `id` int(11) NOT NULL,
   `room_id` int(11) NOT NULL,
+  `jumlah_kamar` int(11) NOT NULL DEFAULT 1,
   `guest_name` varchar(100) NOT NULL,
   `guest_email` varchar(100) NOT NULL,
   `guest_phone` varchar(20) NOT NULL,
@@ -44,8 +45,8 @@ CREATE TABLE `bookings` (
 -- Dumping data for table `bookings`
 --
 
-INSERT INTO `bookings` (`id`, `room_id`, `guest_name`, `guest_email`, `guest_phone`, `check_in`, `check_out`, `total_price`, `booking_date`, `status`) VALUES
-(5, 3, 'Tuan ihsan iii', 'ihsanabrar@gmail.com', '080808080800880', '2026-04-06', '2026-04-07', 750000.00, '2026-04-06 01:30:26', 'pending');
+INSERT INTO `bookings` (`id`, `room_id`, `jumlah_kamar`, `guest_name`, `guest_email`, `guest_phone`, `check_in`, `check_out`, `total_price`, `booking_date`, `status`) VALUES
+(29, 2, 1, 'Tuan Isan Abrar', 'isan@gmail.com', '082387037225', '2026-04-28', '2026-04-29', 350000.00, '2026-04-27 03:25:42', 'pending');
 
 -- --------------------------------------------------------
 
@@ -69,7 +70,7 @@ CREATE TABLE `rooms` (
 
 INSERT INTO `rooms` (`id`, `room_number`, `room_name`, `capacity`, `price_per_night`, `description`, `image`) VALUES
 (1, '101', 'Standard Room King Bed', 2, 0.00, 'Kamar nyaman dengan AC dan TV', NULL),
-(2, '102', 'Standard Room Twin Bed', 2, 0.00, 'Kamar luas dengan balkon', NULL),
+(2, '102', 'Standard Room Twin Bed', 2, 0.00, 'Pilihan tepat untuk berlibur bersama teman atau saudara', NULL),
 (3, '201', 'Family Room', 4, 0.00, 'Cocok untuk keluarga dengan 2 kamar tidur', NULL);
 
 --
@@ -97,7 +98,7 @@ ALTER TABLE `rooms`
 -- AUTO_INCREMENT for table `bookings`
 --
 ALTER TABLE `bookings`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `rooms`

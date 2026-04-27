@@ -248,6 +248,42 @@ img {
     z-index: 1;
 }
 
+/* Tombol Login Admin - Ikon profil transparan seperti WhatsApp */
+.btn-admin-icon {
+    background: transparent;
+    color: var(--black);
+    font-size: 1.6rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px;
+    border-radius: 50%;
+    transition: var(--transition);
+    cursor: pointer;
+    text-decoration: none;
+    line-height: 1;
+}
+
+.btn-admin-icon:hover {
+    background: rgba(0, 0, 0, 0.05);
+    color: var(--gold);
+    transform: scale(1.05);
+}
+
+/* Mobile nav link untuk admin */
+.mobile-nav-link.admin-link-mobile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 500;
+}
+
+.mobile-nav-link.admin-link-mobile i {
+    font-size: 1.2rem;
+    color: var(--gold);
+    width: 28px;
+}
+
 .mobile-menu-btn {
     display: none;
     background: none;
@@ -1681,6 +1717,14 @@ img {
     .hero-text h1 .hero-highlight {
         font-size: 2.4rem;
     }
+    /* Responsif tombol admin */
+    .btn-admin-icon {
+        font-size: 1.4rem;
+        padding: 4px;
+    }
+    .header-right {
+        gap: 1rem;
+    }
 }
 
 @media (max-width: 992px) {
@@ -1764,6 +1808,10 @@ img {
         font-size: 0.7rem;
         letter-spacing: 0.5px;
     }
+    .btn-admin-icon {
+        font-size: 1.3rem;
+        padding: 4px;
+    }
     .mobile-menu-btn {
         font-size: 1.4rem;
     }
@@ -1800,6 +1848,10 @@ img {
     .btn-primary {
         padding: 5px 10px;
         font-size: 0.65rem;
+    }
+    .btn-admin-icon {
+        font-size: 1.2rem;
+        padding: 3px;
     }
     .mobile-menu-btn {
         font-size: 1.3rem;
@@ -2011,7 +2063,7 @@ img {
 .about-slider {
     position: relative;
     width: 100%;
-    aspect-ratio: 4 / 3; /* Rasio gambar, bisa disesuaikan */
+    aspect-ratio: 4 / 3;
 }
 
 .about-slide {

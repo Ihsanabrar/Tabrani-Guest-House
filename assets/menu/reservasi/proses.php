@@ -7,12 +7,10 @@ if (!isset($_SESSION['guest_data']) || $_SERVER['REQUEST_METHOD'] != 'POST') {
     exit;
 }
 
-// Cek apakah kolom 'jumlah_kamar' ada di tabel bookings
+// Cek kolom jumlah_kamar
 $check = $conn->query("SHOW COLUMNS FROM bookings LIKE 'jumlah_kamar'");
 if (!$check || $check->num_rows == 0) {
-    die("Error: Kolom 'jumlah_kamar' tidak ditemukan di tabel bookings.<br>
-         Jalankan SQL ini:<br>
-         <code>ALTER TABLE `bookings` ADD `jumlah_kamar` INT NOT NULL DEFAULT 1 AFTER `room_id`;</code>");
+    die("Error: Kolom 'jumlah_kamar' tidak ditemukan. Jalankan: ALTER TABLE `bookings` ADD `jumlah_kamar` INT NOT NULL DEFAULT 1 AFTER `room_id`;");
 }
 
 $room_ids = $_POST['room_id'] ?? [];
@@ -28,9 +26,9 @@ $nights = (strtotime($check_out) - strtotime($check_in)) / 86400;
 $nights = max($nights, 1);
 
 $room_config = [
-    1 => ["stok" => 5, "harga" => 250000],
-    2 => ["stok" => 12, "harga" => 250000],
-    3 => ["stok" => 4, "harga" => 500000]
+    1 => ["stok" => 5, "harga" => 350000, "nama" => "Standard Room King Bed"],
+    2 => ["stok" => 12, "harga" => 350000, "nama" => "Standard Room Twin Bed"],
+    3 => ["stok" => 4, "harga" => 500000, "nama" => "Family Room"]
 ];
 
 $guest_name = $conn->real_escape_string($guest['title'] . ' ' . $guest['first_name'] . ' ' . $guest['last_name']);
@@ -38,24 +36,9 @@ $email = $conn->real_escape_string($guest['email']);
 $phone = $conn->real_escape_string($guest['phone']);
 
 $total_all = 0;
-$pesan = "Reservasi Baru\n\n";
-$pesan .= "Nama: $guest_name\n";
-
-$valid = false;
-foreach ($room_ids as $rid) {
-    if (!empty($_POST['jumlah_kamar'][$rid]) && $_POST['jumlah_kamar'][$rid] > 0) {
-        $valid = true;
-        break;
-    }
-}
-if (!$valid) {
-    die("Jumlah kamar tidak valid");
-}
+$booked_rooms = []; // untuk menyimpan detail booking
 
 $conn->begin_transaction();
-
-$pesan .= "Check-in: $check_in\n";
-$pesan .= "Check-out: $check_out\n\n";
 
 // Prepared statements
 $stmt_check = $conn->prepare("SELECT SUM(jumlah_kamar) as total FROM bookings WHERE room_id = ? AND status IN ('pending','confirmed') AND check_in < ? AND check_out > ?");
@@ -100,18 +83,35 @@ foreach ($room_ids as $room_id) {
         $conn->rollback();
         die("Gagal menyimpan booking: " . $stmt_insert->error);
     }
-
-    $kamar = $room_id == 1 ? "Standard Double Bed" : ($room_id == 2 ? "Standard Twin Bed" : "Family Room");
-    $pesan .= "\nKamar: $kamar";
-    $pesan .= "\nJumlah: $jumlah_kamar\n";
+    
+    $booking_id = $conn->insert_id;
+    $booked_rooms[] = [
+        'id' => $booking_id,
+        'room_id' => $room_id,
+        'nama_kamar' => $room_config[$room_id]['nama'],
+        'jumlah' => $jumlah_kamar,
+        'harga_per_malam' => $harga,
+        'subtotal' => $total_price
+    ];
 }
 
 $conn->commit();
 
-$pesan .= "\nTotal: Rp " . number_format($total_all, 0, ',', '.');
-$pesan = urlencode($pesan);
-$no_wa = "6282387037225";
+// Simpan data untuk invoice ke session
+$_SESSION['last_booking'] = [
+    'booking_ids' => array_column($booked_rooms, 'id'),
+    'guest_name' => $guest_name,
+    'guest_email' => $email,
+    'guest_phone' => $phone,
+    'check_in' => $check_in,
+    'check_out' => $check_out,
+    'nights' => $nights,
+    'rooms' => $booked_rooms,
+    'total' => $total_all,
+    'booking_date' => date('Y-m-d H:i:s')
+];
 
-header("Location: https://wa.me/$no_wa?text=$pesan");
+// Redirect ke halaman konfirmasi
+header("Location: konfirmasi.php");
 exit;
 ?>

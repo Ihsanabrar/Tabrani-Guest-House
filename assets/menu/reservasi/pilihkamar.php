@@ -29,12 +29,17 @@ $room_config = [
     3 => ["stok" => 4, "harga" => 500000]   // Family
 ];
 
+// PERBAIKAN: menggunakan SUM(jumlah_kamar) bukan COUNT(*)
 $sql = "SELECT r.*, 
-       COALESCE((SELECT COUNT(*) FROM bookings b 
+       COALESCE((SELECT SUM(jumlah_kamar) FROM bookings b 
         WHERE b.room_id = r.id AND b.status IN ('pending','confirmed') 
-        AND b.check_in < '$check_out' AND b.check_out > '$check_in'), 0) as total_booking
+        AND b.check_in < ? AND b.check_out > ?), 0) as total_booking
         FROM rooms r";
-$result = $conn->query($sql);
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("ss", $check_out, $check_in);
+$stmt->execute();
+$result = $stmt->get_result();
+
 if (!$result) {
     die("Error loading rooms: " . $conn->error);
 }
@@ -45,6 +50,7 @@ while ($row = $result->fetch_assoc()) {
     $row['sisa_kamar'] = $stok - $row['total_booking'];
     $available_rooms[] = $row;
 }
+
 function getRoomImage($room) {
     if (!empty($room['image']) && file_exists($room['image'])) {
         return $room['image'];
@@ -650,21 +656,25 @@ function getRoomBadge($roomName) {
                                 </div>
                                 <?php if ($room['sisa_kamar'] <= 0): ?>
                                 <p style="color:red; font-weight:600;">Kamar tidak tersedia</p>
-                                <?php else: ?>
-                                <p style="color:green;">Sisa kamar: <?= $room['sisa_kamar'] ?></p>
-                                <?php endif; ?>
                                 <div>
                                     <label style="font-size:0.8rem;">Jumlah kamar:</label><br>
-                                    <input type="number" name="jumlah_kamar[<?= $room['id'] ?>]" min="1"
-                                        max="<?= $room['sisa_kamar'] ?>" value="1"
-                                        style="width:60px; padding:4px; border-radius:6px;">
+                                    <input type="number" name="jumlah_kamar[<?= $room['id'] ?>]" disabled style="width:60px; padding:4px; border-radius:6px; background:#f0f0f0;">
                                 </div>
-
+                                <label class="checkbox-label" style="display: flex; align-items: center; gap: 8px; opacity:0.6;">
+                                    <input type="checkbox" name="room_id[]" value="<?= $room['id'] ?>" disabled>
+                                    <span class="pk-select-btn" style="background:#ccc; cursor:not-allowed;">Pilih Kamar ini</span>
+                                </label>
+                                <?php else: ?>
+                                <p style="color:green;">Sisa kamar: <?= $room['sisa_kamar'] ?></p>
+                                <div>
+                                    <label style="font-size:0.8rem;">Jumlah kamar:</label><br>
+                                    <input type="number" name="jumlah_kamar[<?= $room['id'] ?>]" min="1" max="<?= $room['sisa_kamar'] ?>" value="1" style="width:60px; padding:4px; border-radius:6px;">
+                                </div>
                                 <label class="checkbox-label" style="display: flex; align-items: center; gap: 8px;">
-                                    <input type="checkbox" name="room_id[]" value="<?= $room['id'] ?>"
-                                        <?= ($room['sisa_kamar'] <= 0 ? 'disabled' : '') ?>>
+                                    <input type="checkbox" name="room_id[]" value="<?= $room['id'] ?>">
                                     <span class="pk-select-btn">Pilih Kamar ini</span>
                                 </label>
+                                <?php endif; ?>
                             </div>
                         </div>
                     </div>
@@ -726,8 +736,9 @@ function getRoomBadge($roomName) {
         document.querySelectorAll('input[name="room_id[]"]:checked').forEach(cb => {
             const roomId = cb.value;
             const price = roomPrices[roomId] || 0;
-            const jumlahInput = document.querySelector(`input[name="jumlah_kamar[${roomId}]"]`);
-            const jumlah = parseInt(jumlahInput.value) || 1;
+            // hanya ambil input jumlah yang tidak disabled
+            const jumlahInput = document.querySelector(`input[name="jumlah_kamar[${roomId}]"]:not(:disabled)`);
+            const jumlah = jumlahInput ? (parseInt(jumlahInput.value) || 1) : 1;
             total += price * nights * jumlah;
             priceDisplay += price * jumlah;
         });
@@ -736,20 +747,23 @@ function getRoomBadge($roomName) {
         selectedTotalSpan.innerText = 'Total: Rp ' + new Intl.NumberFormat('id-ID').format(total);
     }
 
-    document.querySelectorAll('input[name="room_id[]"]').forEach(cb => {
+    document.querySelectorAll('input[name="room_id[]"]:not(:disabled)').forEach(cb => {
         cb.addEventListener('change', updateTotal);
     });
 
-    document.querySelectorAll('input[type="number"]').forEach(input => {
+    document.querySelectorAll('input[type="number"]:not(:disabled)').forEach(input => {
         input.addEventListener('input', function() {
             const roomId = this.name.match(/\d+/)[0];
             const checkbox = document.querySelector(`input[name="room_id[]"][value="${roomId}"]`);
-            if (this.value > 0) {
+            if (this.value > 0 && checkbox && !checkbox.disabled) {
                 checkbox.checked = true;
             }
             updateTotal();
         });
     });
+    
+    // Panggil sekali untuk inisialisasi
+    updateTotal();
     </script>
 </body>
 

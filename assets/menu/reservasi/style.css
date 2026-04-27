@@ -554,7 +554,6 @@ button[type="submit"]:hover {
 }
 
 .confirmation-header::before {
-    content: '✨';
     position: absolute;
     top: 20px;
     left: 20px;
@@ -563,7 +562,6 @@ button[type="submit"]:hover {
 }
 
 .confirmation-header::after {
-    content: '✨';
     position: absolute;
     bottom: 20px;
     right: 20px;
@@ -1443,4 +1441,12 @@ button[type="submit"]:hover {
     z-index: 100;
     margin: 0;
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* Tambahan untuk halaman konfirmasi */
+.room-list-summary h4 {
+    font-family: 'Cormorant Garamond', serif;
+    color: #1A1A1A;
+    border-left: 3px solid #C5A059;
+    padding-left: 12px;
 }

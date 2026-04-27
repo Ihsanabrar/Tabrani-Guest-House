@@ -175,6 +175,21 @@
             transform: scale(1.2);
         }
 
+        /* ========== TOMBOL EXPLORE ROOMS SAMA SEPERTI FIND ROOM ========== */
+        .hero-explore-btn {
+            background: var(--gold, #C5A059) !important;
+            color: var(--black, #1A1A1A) !important;
+            border: none !important;
+            transition: all 0.3s ease !important;
+        }
+
+        .hero-explore-btn:hover {
+            background: var(--black, #1A1A1A) !important;
+            color: var(--gold, #C5A059) !important;
+            transform: translateY(-3px) !important;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2) !important;
+        }
+
         @media (max-width: 768px) {
             .hero-container-new {
                 flex-direction: column;
@@ -433,6 +448,10 @@
             </nav>
             <div class="header-right">
                 <a href="assets/menu/reservasi/reservasi.php" class="btn btn-primary">Booking Now</a>
+                <!-- Tombol Login Admin (ikon profil transparan) -->
+                <a href="assets/menu/reservasi/admin_login.php" class="btn-admin-icon" id="adminLoginBtn" title="Login Admin">
+                    <i class="fas fa-user-circle"></i>
+                </a>
                 <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">
                     <i class="fas fa-bars"></i>
                 </button>
@@ -455,6 +474,8 @@
             <li><a href="https://ihsanabrar.github.io/STCH/" class="mobile-nav-link">STCH</a></li>
             <li><a href="assets/menu/reservasi/reservasi.php" class="btn btn-primary" style="margin-top:1rem;">Booking
                     Now</a></li>
+            <!-- Link Login Admin di mobile nav -->
+            <li><a href="assets/menu/reservasi/admin_login.php" class="mobile-nav-link admin-link-mobile"><i class="fas fa-user-circle"></i> Login Admin</a></li>
         </ul>
     </div>
 
@@ -463,9 +484,9 @@
         <div class="hero-slider">
             <div class="slide active" style="background-image: url('assets/menu/reservasi/GUEST_HOUSE/TGH-41.jpg');">
             </div>
-            <div class="slide" style="background-image: url('assets/menu/reservasi/GUEST_HOUSE/TGH-24.jpg');"></div>
+            <div class="slide" style="background-image: url('assets/menu/reservasi/GUEST_HOUSE/family_room6.jpg');"></div>
             <div class="slide" style="background-image: url('assets/menu/reservasi/GUEST_HOUSE/TGH-21.jpg');"></div>
-            <div class="slide" style="background-image: url('assets/menu/reservasi/GUEST_HOUSE/TGH-29.jpg');"></div>
+            <div class="slide" style="background-image: url('assets/menu/reservasi/GUEST_HOUSE/family_room3.jpg');"></div>
         </div>
         <div class="hero-dots">
             <span class="dot active"></span>
@@ -812,7 +833,7 @@
 
         // About Slider
         (function () {
-            const images = ["assets/menu/reservasi/GUEST_HOUSE/TGH-24.jpg", "assets/menu/reservasi/GUEST_HOUSE/TGH-21.jpg", "assets/menu/reservasi/GUEST_HOUSE/TGH-29.jpg"];
+            const images = ["assets/menu/reservasi/GUEST_HOUSE/family_room6.jpg", "assets/menu/reservasi/GUEST_HOUSE/TGH-21.jpg", "assets/menu/reservasi/GUEST_HOUSE/family_room5.jpg"];
             let idx = 0, interval;
             const container = document.getElementById('aboutSlider');
             const dotsContainer = document.getElementById('sliderDots');
